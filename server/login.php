@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 	$login = $_POST['login'];
 	$pass = $_POST['pass'];
@@ -52,7 +52,7 @@ session_start();
 			echo ("неверный пароль");
 		}
 	break;
-	echo "";
+	
 	}
 
 ?>
