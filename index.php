@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 	<head>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -46,7 +46,7 @@
 			</button>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					
+					Привет
 				</ul>
 			</div>	
 		</div>	
