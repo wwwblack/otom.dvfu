@@ -46,7 +46,7 @@
 			</button>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					Привет
+					ПриветФОЫРВ
 				</ul>
 			</div>	
 		</div>	
