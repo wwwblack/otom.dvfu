@@ -54,7 +54,7 @@ mysql_query("SET NAMES 'utf8';");
 					<li><a href="f_a_q.php">F.A.Q.</a></li>
 					<?php 
 					if ($_SESSION['privilege'] == 1 ){
-						echo "<li><a href=\"..\admin.php\">Админочка</a></li>";
+						echo "<li><a href=\"admin.php\">Админочка</a></li>";
 					}
 					else{
 						if (isset($_SESSION['login'])){
