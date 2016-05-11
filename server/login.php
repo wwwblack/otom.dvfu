@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 session_start();
 	$login = $_POST['login'];
 	$pass = $_POST['pass'];
@@ -21,6 +21,8 @@ session_start();
 			$_SESSION['login']=$login;
 			$_SESSION['privilege'] = $user_data['privilege'];
 			$_SESSION['id'] = $user_data['id'];
+			header('Location: ../main.php');
+			exit;
 			echo "<a href=\"main.php\">ООО ГОСПОДЬ ВСЕМОГУЩИЙ. ОЙ ТОЧНО! ЭТО ЖЕ Я!</a>".$_SESSION['id'];
 			
 		}
