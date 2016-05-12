@@ -87,10 +87,9 @@ mysql_query("SET NAMES 'utf8';");
 			<label for="avatar">Аватар:</label>
 			
 			<img src="<?php echo $user_data['img'];?>" height="100">
-			<input type="file" name="avatar" id="avatar"><br>
+			
 				<button type=button class="btn btn-xs btn-success">Сменить фото</button>
-				<input type="submit" id="submit" value="Отправить">
-				</form>
+			</form>
 			</div>
 			<div class="col-sm-4">
 				<div style="font-size: 250%;">

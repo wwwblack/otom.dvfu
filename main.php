@@ -91,7 +91,7 @@ mysql_query("SET NAMES 'utf8';");
 				
 			
 			<div class="navbar-collapse collapse">
-
+			sdgfsdfdsf
 				<ul class="nav navbar-nav navbar-right">
 				
 					<li class="active"><a href="#">Каталог</a></li>
@@ -115,19 +115,28 @@ mysql_query("SET NAMES 'utf8';");
 	<div class="container">
 	<!-- Строка фильтров -->
 		<div class="row">
-			<div class=\"col-sm-12\" style=\"background-color: #BDC2E8; box-shadow: 0 0 5px; border-radius: 20px; border-left: 1px solid black; border-right: 1px solid black;\">
-				
-			</div>		
+			
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-sm-6" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
-					<hr>
-						<div id="content">
-						<p> Сюда я буду выводить результат запроса :) </p>
+						<div class="row">
+							<div class="col-sm-2" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
+							Картинка
+							</div>
+							<div class="col-sm-3" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
+							Расположение
+							</div>
+							<div class="col-sm-5" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
+							Описание
+							</div>
+						<hr>
+							<div id="content">
+							<p> Сюда я буду выводить результат запроса :) </p>
+							</div>
 						</div>
-					</div>
+					</div>	
 					<div  class="col-sm-6 fixed" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
 					<p>Выберите фильры</p>
 					<hr>

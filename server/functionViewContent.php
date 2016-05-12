@@ -31,49 +31,52 @@ mysql_query("SET NAMES 'utf8';");
 			
 				echo mysql_error();
 				$result_set = mysql_query($sqlZaprosForViewContent);
-				//через уайл загружаем имеющиеся объекты
-				while ($result = mysql_fetch_array($result_set)){
-					
-					echo "
-					<div class =\"".$result['id']."\">
-						<div class=\"row\" >
-						
-						 ";
-						
-					echo "
-						<div class=\"col-sm-1\">
-							<button type=\"button\" class=\"btn btn-primary\" id=\"myPopover\" data-toggle=\"popover\" data-contentwrapper=\"#mypopover_".$result['id']."\">IMG</button>
-							<div id=\"mypopover_".$result['id']."\" style=\"display: none;\">
-							  <div class=\"alert alert-danger\"><img src=\""./* Запрос картинки  */$result["img_item"]."\" width=\"150\" height=\"150\"></div>
-							</div>
-						</div>
-					";
-				// запрос данных 
-					echo "	<div class=\"col-sm-3\">
-								Местоположение - ".$result['nameOfPosition']."
-							</div>
-						";	
-					
-					echo "
-						<div class=\"col-sm-5\">
-							Описание - ".$result["description_item"]."
-						</div>
-					";
-					//В батон записываем айди item и логин пользователя и отправляем для дальнейшей обработки	
-					echo "
-						<div class=\"col-sm-1\">
-							<div style=\"margin-left: 80%\">
-							<form method=\"POST\">
-							<button name=\"addItem\" type=\"submit\" class=\"btn btn-md btn-success\" value=\"".$result["id"].":".$_SESSION['id']."\" >Взять</button>
-							</form>
-							</div>
-						</div>
-						
-						</div>
-						<hr>
-					
-					";
+				$result = mysql_fetch_array($result_set);
+				//Проверяем на пустоту массива.
+				if (empty($result)) {
+					echo 'Извини друг, нечего не смог найти :(';
 				}
+				else {
+					//через уайл загружаем имеющиеся объекты
+					while ($result = mysql_fetch_array($result_set)){
+						// Мой паповер вывод картинки
+						echo "
+						<div class =\"".$result['id']."\">
+							<div class=\"row\" >
+							<div class=\"col-sm-2\">
+								<button type=\"button\" class=\"btn btn-primary\" id=\"myPopover\" data-toggle=\"popover\" data-contentwrapper=\"#mypopover_".$result['id']."\">IMG</button>
+								<div id=\"mypopover_".$result['id']."\" style=\"display: none;\">
+								  <div class=\"alert alert-danger\"><img src=\""./* Запрос картинки  */$result["img_item"]."\" width=\"150\" height=\"150\"></div>
+								</div>
+							</div>
+						";
+				
+						echo "	<div class=\"col-sm-3\">
+									".$result['nameOfPosition']."
+								</div>
+							";	
+						
+						echo "
+							<div class=\"col-sm-4\">
+								".$result["description_item"]."
+							</div>
+						";
+						//В батон записываем айди item и логин пользователя и отправляем для дальнейшей обработки	
+						echo "
+							<div class=\"col-sm-1\">
+								<div style=\"margin-left: 80%\">
+								<form method=\"POST\">
+								<button name=\"addItem\" type=\"submit\" class=\"btn btn-md btn-success\" value=\"".$result["id"].":".$_SESSION['id']."\" >Взять</button>
+								</form>
+								</div>
+							</div>
+							
+							</div>
+							<hr>
+						
+						";
+					}
+				}	
 				echo "
 						<script type=\"text/javascript\">
 							$(function () {

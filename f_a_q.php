@@ -32,14 +32,15 @@ mysql_query("SET NAMES 'utf8';");
 		
 		$(document).ready (function (){
 			$("#find").bind("click", function (){
-				var htmlSelectOfType_item = document.getElementById("htmlSelectOfType_item").value;
-				var htmlSelectOfBrend = document.getElementById("htmlSelectOfBrend").value;
-				var htmlSelectOfRoom = document.getElementById("htmlSelectOfRoom").value;
+			//	var htmlSelectOfType_item = document.getElementById("htmlSelectOfType_item").value;
+			//	var htmlSelectOfBrend = document.getElementById("htmlSelectOfBrend").value;
+			//	var htmlSelectOfRoom = document.getElementById("htmlSelectOfRoom").value;
+			//htmlSelectOfType_item: htmlSelectOfType_item, htmlSelectOfBrend: htmlSelectOfBrend, htmlSelectOfRoom:htmlSelectOfRoom, 
 				var buttonValueForFunction = document.getElementById("find").value;
 				$.ajax ({
 					url: "server/functionfaq.php",
 					type: "POST",
-					data: ({htmlSelectOfType_item: htmlSelectOfType_item, htmlSelectOfBrend: htmlSelectOfBrend, htmlSelectOfRoom:htmlSelectOfRoom, buttonValueForFunction: buttonValueForFunction}),
+					data: ({buttonValueForFunction: buttonValueForFunction}),
 					dataType: "text",
 					beforeSend: funcBefore,
 					success: funcSuccess
@@ -116,18 +117,7 @@ mysql_query("SET NAMES 'utf8';");
 						</div>
 					</div>
 					<div  class="col-sm-6 fixed" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
-					<br>
-					<hr>
-					
-					<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-contentwrapper="#mypopover">IMG</button>
-					<div id="mypopover" style="display: none;">
-					  <!-- Содержимое, которое будем выводит в popover -->
-					  <div class="alert alert-danger">СодержимоеБЛЯЯЯЯЯЯЯ...</div>
-					</div>
-					<script>
-
-</script>
-					
+					<br>					
 				<select id="htmlSelectOfType_item" name="htmlSelectOfType_item">
 							<option value="" class="label">Тип Оборудования</option>
 
@@ -136,7 +126,7 @@ mysql_query("SET NAMES 'utf8';");
 									//через селект вытаскиваем тип по айди
 										$sqlZaprosType_item = mysql_query("SELECT * FROM type_item ORDER BY name_type_item");
 										while ($result_sqlZaprosType_item = mysql_fetch_array($sqlZaprosType_item)) {
-											echo "<option select value =".$result_sqlZaprosType_item["id"].">".$result_sqlZaprosType_item['name_type_item'],$result_sqlZaprosType_item["id"]."";	
+											echo "<option select value =".$result_sqlZaprosType_item["id"].">".$result_sqlZaprosType_item['name_type_item']."";	
 										}
 									?>
 				</select>
@@ -147,20 +137,9 @@ mysql_query("SET NAMES 'utf8';");
 									//через селект вытаскиваем тип по айди
 										$sqlZaprosBrend = mysql_query("SELECT * FROM brend ORDER BY title ");
 										while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
-											echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title'], $result_sqlZaprosBrend ["id"]."";	
+											echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
 										}
 									?>
-				</select>
-				<select id="htmlSelectOfRoom" name="htmlSelectOfRoom">
-					<option value="" class="label">Помещение</option>
-										<?php
-										//Не забуть это переделать в ajax
-										//через селект вытаскиваем тип по айди
-											$sqlZaprosRoom = mysql_query("SELECT * FROM room");
-											while ($result_sqlZaprosRoom = mysql_fetch_array($sqlZaprosRoom)) {
-												echo "<option select value =".$result_sqlZaprosRoom["id"].">".$result_sqlZaprosRoom['position_name'], $result_sqlZaprosRoom["id"]."";	
-											}
-										?>
 				</select>
 				<button id="find" value="1" type="submit">Поиск</button>
 				<br>

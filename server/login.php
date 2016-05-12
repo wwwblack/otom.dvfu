@@ -31,24 +31,28 @@ session_start();
 		}
 	break;
 	case 2:
-			if ($user_data['pass'] == $pass){
+		if ($user_data['pass'] == $pass){
 			$chek = true;
 			$_SESSION['login']=$login;
 			$_SESSION['id'] = $user_data['id'];
 			$_SESSION['privilege'] = $user_data['privilege'];
-			echo "<a href=\"main.php\">Привет начаника</a>";
+			header('Location: ../main.php');
+			exit;
+			
 		}
 		else{
 			echo ("неверный пароль");
 		}
 	break;
 	case 3:
-				if ($user_data['pass'] == $pass){
+		if ($user_data['pass'] == $pass){
 			$chek = true;
 			$_SESSION['id'] = $user_data['id'];
 			$_SESSION['login']=$login;
 			$_SESSION['privilege'] = $user_data['privilege'];
-			echo "<a href=\"main.php\">Ну наконец то РАБ =[</a>";
+			header('Location: ../main.php');
+			exit;
+			
 		}
 		else{
 			echo ("неверный пароль");

@@ -84,7 +84,7 @@
             <label><strong>Пароль:</strong></label><br/>
             <input id="passik" type="password" size="25" name="pass" id="pass" />
 			<hr>
-			<input id="enter" type="submit">Войти</input>
+			<button id="enter" type="submit">Войти</button>
 		</form>
 		<div id="information"></div>
 		<!--<a href="#" class="thumbnail">
