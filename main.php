@@ -91,7 +91,7 @@ mysql_query("SET NAMES 'utf8';");
 				
 			
 			<div class="navbar-collapse collapse">
-			sdgfsdfdsf
+			
 				<ul class="nav navbar-nav navbar-right">
 				
 					<li class="active"><a href="#">Каталог</a></li>
@@ -122,7 +122,7 @@ mysql_query("SET NAMES 'utf8';");
 				<div class="row">
 					<div class="col-sm-6" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
 						<div class="row">
-							<div class="col-sm-2" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
+							<div class="col-sm-2" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black; ">
 							Картинка
 							</div>
 							<div class="col-sm-3" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
