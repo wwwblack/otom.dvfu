@@ -105,7 +105,7 @@ mysql_query("SET NAMES 'utf8';");
 							echo "<li><a href=\"..\index.php\">Вход</a></li>";
 						}
 						?>
-					<li><a href="#">Обо мне</a></li>
+					<li><a href="FeedBack.html">FeedBack</a></li>
 					<li><a href="clear.php">Выход</a></li>
 				</ul>
 			</div>	

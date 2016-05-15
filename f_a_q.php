@@ -59,6 +59,8 @@ mysql_query("SET NAMES 'utf8';");
 					beforeSend: funcBefore,
 					success: funcSuccess
 				});
+				document.getElementById('question').value='';
+				alert ("Ваш вопрос успешно добавлен");
 			});
 			
 		});
@@ -82,7 +84,7 @@ mysql_query("SET NAMES 'utf8';");
 
 				<ul class="nav navbar-nav navbar-right">
 				
-					<li><a href="#">Каталог</a></li>
+					<li><a href="main.php">Каталог</a></li>
 					<li class="active"><a  href="f_a_q.php">F.A.Q.</a></li>
 					<?php 
 						if (isset($_SESSION['login'])){
