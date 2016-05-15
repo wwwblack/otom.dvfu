@@ -120,15 +120,15 @@ mysql_query("SET NAMES 'utf8';");
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="row">
-					<div class="col-sm-6" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
+					<div class="col-sm-6" style=" box-shadow: 0 0 5px;  border-left: 1px solid black; border-right: 1px solid black;">
 						<div class="row">
-							<div class="col-sm-2" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black; ">
+							<div class="col-sm-2" style=" border-left: 1px solid black; border-right: 1px solid black; ">
 							Картинка
 							</div>
-							<div class="col-sm-3" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
+							<div class="col-sm-3" style=" border-left: 1px solid black; border-right: 1px solid black;">
 							Расположение
 							</div>
-							<div class="col-sm-5" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
+							<div class="col-sm-5" style=" border-left: 1px solid black;">
 							Описание
 							</div>
 						<hr>
@@ -137,50 +137,46 @@ mysql_query("SET NAMES 'utf8';");
 							</div>
 						</div>
 					</div>	
-					<div  class="col-sm-6 fixed" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
-					<p>Выберите фильры</p>
+						<div  class="col-sm-6 fixed" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
+						<p>Выберите фильры</p>
 					<hr>
-						<select id="htmlSelectOfType_item" name="htmlSelectOfType_item">
-					<option value="" class="label">Тип Оборудования</option>
+							<select id="htmlSelectOfType_item" name="htmlSelectOfType_item">
+						<option value="" class="label">Тип Оборудования</option>
 
-									<?php
-									//Не забуть это переделать в ajax
-									//через селект вытаскиваем тип по айди
-										$sqlZaprosType_item = mysql_query("SELECT * FROM type_item ORDER BY name_type_item");
-										while ($result_sqlZaprosType_item = mysql_fetch_array($sqlZaprosType_item)) {
-											echo "<option select value =".$result_sqlZaprosType_item["id"].">".$result_sqlZaprosType_item['name_type_item']."";	
-										}
-									?>
-				</select>
-				<select id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
-					<option value="" class="label">Производитель</option>
-									<?php
-									//Не забуть это переделать в ajax
-									//через селект вытаскиваем тип по айди
-										$sqlZaprosBrend = mysql_query("SELECT * FROM brend ORDER BY title" );
-										while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
-											echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
-										}
-									?>
-				</select>
-				<select id="htmlSelectOfRoom" name="htmlSelectOfRoom">
-					<option value="" class="label">Помещение</option>
 										<?php
 										//Не забуть это переделать в ajax
 										//через селект вытаскиваем тип по айди
-											$sqlZaprosRoom = mysql_query("SELECT * FROM room");
-											while ($result_sqlZaprosRoom = mysql_fetch_array($sqlZaprosRoom)) {
-												echo "<option select value =".$result_sqlZaprosRoom["id"].">".$result_sqlZaprosRoom['position_name']."";	
+											$sqlZaprosType_item = mysql_query("SELECT * FROM type_item ORDER BY name_type_item");
+											while ($result_sqlZaprosType_item = mysql_fetch_array($sqlZaprosType_item)) {
+												echo "<option select value =".$result_sqlZaprosType_item["id"].">".$result_sqlZaprosType_item['name_type_item']."";	
 											}
 										?>
-				</select>
-				
-				<input name="tag" type="text" id="tag" size="20"/>
-				<button id="enter" type="submit">Поиск</button>
-				<br>
-				<hr>
-				<br>
+					</select>
+					<select id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
+						<option value="" class="label">Производитель</option>
+										<?php
+										//Не забуть это переделать в ajax
+										//через селект вытаскиваем тип по айди
+											$sqlZaprosBrend = mysql_query("SELECT * FROM brend ORDER BY title" );
+											while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
+												echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
+											}
+										?>
+					</select>
+					<select id="htmlSelectOfRoom" name="htmlSelectOfRoom">
+						<option value="" class="label">Помещение</option>
+											<?php
+											//Не забуть это переделать в ajax
+											//через селект вытаскиваем тип по айди
+												$sqlZaprosRoom = mysql_query("SELECT * FROM room");
+												while ($result_sqlZaprosRoom = mysql_fetch_array($sqlZaprosRoom)) {
+													echo "<option select value =".$result_sqlZaprosRoom["id"].">".$result_sqlZaprosRoom['position_name']."";	
+												}
+											?>
+					</select>
 					
+					<input name="tag" type="text" id="tag" size="20"/>
+					<button id="enter" type="submit">Поиск</button>						
 					</div>
 				</div>	
 			</div>

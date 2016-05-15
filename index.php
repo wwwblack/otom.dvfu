@@ -8,7 +8,30 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/custom.css" rel="stylesheet">
 	<title>login</title>
-	<script type="text/javascript">		
+	<style>
+	.window_show {
+		display: none; 
+		z-index: 1000;
+		width: 200px; height: auto;
+		right: 20px;
+		
+		
+	}
+	.green {
+		color: #fff;
+	}
+	 
+	.green a {
+		color: #fff;
+	}
+</style>
+	<script type="text/javascript">	
+	// Плавное всплытие картинки при загрузки
+	$(document).ready(function() {
+		setTimeout ("$('.window_show').show('drop');", 100);
+		//setTimeout ("$('.window_show').hide('drop');", 5000);
+	});
+	
 		function funcBefore(){
 			$("#information").html("<hr> Ожидайте ответа...");
 		}
@@ -73,7 +96,9 @@
 	<div class="container">
 		<div class="row">
 		<div class="col-sm-6" ></br>
-		<img src="img/1.jpg" height="300">
+		<div class='window_show green'>
+			<img src="img/1.jpg" height="300">
+		</div>	
 		</div>
 		<div class="col-sm-6" style="width: 300px; margin-top: 15%;">
 		<form id="login" action="server/login.php" method="post">

@@ -43,36 +43,34 @@ mysql_query("SET NAMES 'utf8';");
 						echo "
 						<div class =\"".$result['id']."\">
 							<div class=\"row\" >
-							<div class=\"col-sm-2\">
-								<button type=\"button\" class=\"btn btn-primary\" id=\"myPopover\" data-toggle=\"popover\" data-contentwrapper=\"#mypopover_".$result['id']."\">IMG</button>
-								<div id=\"mypopover_".$result['id']."\" style=\"display: none;\">
-								  <div class=\"alert alert-danger\"><img src=\""./* Запрос картинки  */$result["img_item"]."\" width=\"150\" height=\"150\"></div>
+								<div class=\"col-sm-2\">
+									<button type=\"button\" class=\"btn btn-primary\" id=\"myPopover\" data-toggle=\"popover\" data-contentwrapper=\"#mypopover_".$result['id']."\">IMG</button>
+									<div id=\"mypopover_".$result['id']."\" style=\"display: none;\">
+									  <div class=\"alert alert-danger\"><img src=\""./* Запрос картинки  */$result["img_item"]."\" width=\"150\" height=\"150\"></div>
+									</div>
 								</div>
-							</div>
 						";
 				
-						echo "	<div class=\"col-sm-3\">
+						echo "	<div class=\"col-sm-3\" style=\"border-left: 1px solid black;\">
 									".$result['nameOfPosition']."
 								</div>
 							";	
 						
 						echo "
-							<div class=\"col-sm-4\">
-								".$result["description_item"]."
-							</div>
+								<div class=\"col-sm-4\"style=\"border-left: 1px solid black;\">
+									".$result["description_item"]."
+								</div>
 						";
 						//В батон записываем айди item и логин пользователя и отправляем для дальнейшей обработки	
 						echo "
-							<div class=\"col-sm-1\">
-								<div style=\"margin-left: 80%\">
-								<form method=\"POST\">
-								<button name=\"addItem\" type=\"submit\" class=\"btn btn-md btn-success\" value=\"".$result["id"].":".$_SESSION['id']."\" >Взять</button>
-								</form>
+								<div class=\"col-sm-1\" style=\"border-left: 1px solid black;\">
+									<div style=\"margin-left: 80%\">
+									<form method=\"POST\">
+									<button name=\"addItem\" type=\"submit\" class=\"btn btn-md btn-primary\" value=\"".$result["id"].":".$_SESSION['id']."\" >Взять</button>
+									</form>
+									</div>
 								</div>
-							</div>
-							
-							</div>
-							<hr>
+						</div>
 						
 						";
 					}
