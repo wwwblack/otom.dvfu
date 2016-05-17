@@ -66,7 +66,7 @@ mysql_query("SET NAMES 'utf8';");
 						}
 					}	
 						?>
-					<li><a href="#">Обо мне</a></li>
+					<li><a href="feedback.php">Feedback</a></li>
 					<li><a href="clear.php">Выход</a></li>
 				</ul>
 			</div>	
