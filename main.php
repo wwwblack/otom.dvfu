@@ -68,12 +68,12 @@ mysql_query("SET NAMES 'utf8';");
 				});
 			});
 			
-		$(document).ready(function(){
+	/*	$(document).ready(function(){
 			 $("#tag").autocomplete("server/autocomplete.php", {
 					selectFirst: true
 				});
 		});
-			
+			*/
 	</script>
 	<title>login</title>
 	</head>
@@ -105,7 +105,7 @@ mysql_query("SET NAMES 'utf8';");
 							echo "<li><a href=\"..\index.php\">Вход</a></li>";
 						}
 						?>
-					<li><a href="FeedBack.html">FeedBack</a></li>
+					<li><a href="FeedBack.php">FeedBack</a></li>
 					<li><a href="clear.php">Выход</a></li>
 				</ul>
 			</div>	
