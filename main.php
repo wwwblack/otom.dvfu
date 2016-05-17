@@ -137,7 +137,7 @@ mysql_query("SET NAMES 'utf8';");
 							</div>
 						</div>
 					</div>	
-						<div  class="col-sm-6 fixed" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
+						<div  class="col-sm-6" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
 						<p>Выберите фильры</p>
 					<hr>
 							<select id="htmlSelectOfType_item" name="htmlSelectOfType_item">
