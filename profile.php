@@ -1,5 +1,9 @@
 <?php
-session_start();
+if (!isset($_SESSION)) { header('Location: index.php');
+}
+else{
+	session_start();
+}
 include("/server/mysql.php");
 include("/server/function.php"); 
 mysql_query("SET NAMES 'utf8';");
