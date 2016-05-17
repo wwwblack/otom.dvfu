@@ -98,7 +98,8 @@ mysql_query("SET NAMES 'utf8';");
 					<li><a href="f_a_q.php">F.A.Q.</a></li>
 					<?php 
 						if (isset($_SESSION['login'])){
-							echo  "<li ><a href=\"profile.php\">Профиль</a></li>";
+							echo  "	
+							<li ><a href=\"profile.php\">Профиль</a></li>";
 						}
 						else
 						{

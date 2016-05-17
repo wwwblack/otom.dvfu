@@ -173,54 +173,53 @@ switch ($userlist){
 	";
 	
 	break;
-	/*<div class="row" >
-			<p>	Добавление нового оборудования </p>
-			<div class="col-sm-8" style="background-color: #808080;">
-			<form name="addItem" enctype="multipart/form-data" action="" method="POST">
-				<select name="htmlSelectOfBrend" size="1">
-									<?php
-									//Не забуть это переделать в ajax
-									//через селект вытаскиваем тип по айди
-										$sqlZaprosBrend = mysql_query("SELECT * FROM brend");
-										while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
-											echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
-										}
-									?>
-				</select><br/>
-				<select name="htmlSelectOfRoom" size="1">
-									<?php
-									//Не забуть это переделать в ajax
-									//через селект вытаскиваем тип по айди
-										$sqlZaprosRoom = mysql_query("SELECT * FROM room");
-										while ($result_sqlZaprosRoom = mysql_fetch_array($sqlZaprosRoom)) {
-											echo "<option select value =".$result_sqlZaprosRoom["id"].">".$result_sqlZaprosRoom['position_name']."";	
-										}
-									?>
-				</select><br/>
-				<select name="htmlSelectOfType_item" size="1">
-									<?php
-									//Не забуть это переделать в ajax
-									//через селект вытаскиваем тип по айди
-										$sqlZaprosType_item = mysql_query("SELECT * FROM type_item");
-										while ($result_sqlZaprosType_item = mysql_fetch_array($sqlZaprosType_item)) {
-											echo "<option select value =".$result_sqlZaprosType_item["id"].">".$result_sqlZaprosType_item['name_type_item']."";	
-										}
-									?>
-				</select><br/>
-				<textarea name="descriptionOfItem" style="width:300px; background-color:#FDF5E6; margin-top:1%; height:100px; margin-left:2%; min-height:10px;resize:none"></textarea>
-				<form enctype="multipart/form-data" method="POST">
-					<!-- Поле MAX_FILE_SIZE должно быть указано до поля загрузки файла -->
-					<input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-					<!-- Название элемента input определяет имя в массиве $_FILES -->
-					Отправить этот файл: <input name="userfile" type="file" /><br>
-					<button type="submit" id="enter" />Отправить файл</button>
-				</form>
-				
-				<div id="information"></div>
-				
-			</form>
-			</div>		
+	
+	case 7:
+	//Выводим feedback от пользователей для админа.
+	//  
+	echo "
+	<div class=\"container\">
+		<div class=\"row\" >
+			<div class=\"col-sm-8\">
+			<div style = \"text-align: center;\">
+							<h1>Отзывы</h1>
+							<table border=\"1\" style=\"margin: 0 auto;\" width=\"50%\">
+							<tr>
+								<td border=\"2\">Имя
+								</td>
+								<td border=\"2\">Фамилия
+								</td>
+							</tr>
+	";				
+							/*$user_id_array = Array();
+							$sqlZaprosIdUser = mysql_query("SELECT id_user FROM feedback");
+							while ($result_$sqlZaprosIdUser = mysql_fetch_array($sqlZaprosIdUser)) {
+								$user_id_array[] = $result_$sqlZaprosIdUser['id_user'];
+							}*/
+							$sqlZaprosFeedBack = mysql_query("SELECT * FROM feedback");
+							while ($result_sqlZaprosFeedBack = mysql_fetch_array($sqlZaprosFeedBack)) {
+								echo "<tr><form method=\"POST\">";
+									echo "<td>".$result_sqlZaprosFeedBack["id_user"]."</td>";
+									echo "<td>".$result_sqlZaprosFeedBack["text_feedback"]."</td>";
+									echo "<td><input type=\"submit\" method=\"post\" name=\"del\" value= ".$result_sqlZaprosFeedBack["id"]." /></td> ";
+								echo "</tr></form>";
+							}
+							
+							if( isset( $_POST['del'] ) )
+								{
+									echo $_POST['del'];
+									//$id = $result["id"];
+									$delete = mysql_query ("DELETE FROM `feedback` WHERE `id` = ".$_POST["del"]);
+									echo 'Ты нажяль!';
+								}
+	echo "						
+							</table>
+                        
+						</div>
+			</div>
 		</div>
-		<hr>*/
+		</div>	
+	";
+	break;
 }	
 ?>

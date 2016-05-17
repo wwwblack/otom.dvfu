@@ -68,6 +68,19 @@ mysql_query("SET NAMES 'utf8';");
 					success: funcSuccess
 				});
 			});
+			//Скрипт для вывода таблицы feedback.
+			$("#feedback").bind("click", function (){
+				var userlist;
+				$.ajax ({
+					url: "server/functionAdminViewContent.php",
+					type: "POST",
+					
+					data: ({userlist: 7}),
+					dataType: "text",
+					beforeSend: funcBefore,
+					success: funcSuccess
+				});
+			});
 		});
 		
 		
@@ -131,7 +144,7 @@ mysql_query("SET NAMES 'utf8';");
 			<button id="enter" type="submit">Поиск</button>
 			<br>
 			<br>
-			<button id="enter" type="submit">Поиск</button>
+			<button id="feedback" type="submit">Feedback</button>
 			</div>
 			<div class="col-sm-10">
 				<div id="content">
