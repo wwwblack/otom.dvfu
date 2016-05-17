@@ -92,7 +92,7 @@ mysql_query("SET NAMES 'utf8';");
 						}
 						else
 						{
-							echo "<li><a href=\"..\index.php\">Вход</a></li>";
+							echo "<li><a href=\"index.php\">Вход</a></li>";
 						}
 						?>
 					<li><a href="feedback.php">Feedback</a></li>

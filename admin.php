@@ -3,7 +3,13 @@ session_start();
 include("/server/mysql.php");
 include("/server/function.php"); 
 mysql_query("SET NAMES 'utf8';");
-
+if( isset( $_POST['del'] ) )
+								{
+									echo $_POST['del'];
+									//$id = $result["id"];
+									$delete = mysql_query ("DELETE FROM `feedback` WHERE `id` = ".$_POST["del"]);
+									echo 'Ты нажяль!';
+								}
 ?>
 <html>
 	<head>

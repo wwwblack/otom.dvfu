@@ -205,13 +205,7 @@ switch ($userlist){
 								echo "</tr></form>";
 							}
 							
-							if( isset( $_POST['del'] ) )
-								{
-									echo $_POST['del'];
-									//$id = $result["id"];
-									$delete = mysql_query ("DELETE FROM `feedback` WHERE `id` = ".$_POST["del"]);
-									echo 'Ты нажяль!';
-								}
+							
 	echo "						
 							</table>
                         
