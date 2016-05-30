@@ -119,26 +119,7 @@ mysql_query("SET NAMES 'utf8';");
 			
 		</div>
 		<div class="row">
-			<div class="col-sm-12">
-				<div class="row">
-					<div class="col-sm-6" style=" box-shadow: 0 0 5px;  border-left: 1px solid black; border-right: 1px solid black;">
-						<div class="row">
-							<div class="col-sm-2" style=" border-left: 1px solid black; border-right: 1px solid black; ">
-							Картинка
-							</div>
-							<div class="col-sm-3" style=" border-left: 1px solid black; border-right: 1px solid black;">
-							Расположение
-							</div>
-							<div class="col-sm-5" style=" border-left: 1px solid black;">
-							Описание
-							</div>
-						<hr>
-							<div id="content">
-							<p> Сюда я буду выводить результат запроса :) </p>
-							</div>
-						</div>
-					</div>	
-						<div  class="col-sm-6" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
+			<div  class="col-sm-12" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
 						<p>Выберите фильры</p>
 					<hr>
 							<select id="htmlSelectOfType_item" name="htmlSelectOfType_item">
@@ -176,9 +157,32 @@ mysql_query("SET NAMES 'utf8';");
 											?>
 					</select>
 					
-					<input name="tag" type="text" id="tag" size="20"/>
+					<input name="tag" type="text" id="tag" value="Поиск" size="20"/>
 					<button id="enter" type="submit">Поиск</button>						
-					</div>
+			</div>
+		</div>
+		<div class="row">
+					<div class="col-sm-12" style=" box-shadow: 0 0 5px;  border-left: 1px solid black; border-right: 1px solid black;">
+						<div class="row">
+							<div class="col-sm-2" style=" border-left: 1px solid black; border-right: 1px solid black; ">
+							Картинка
+							</div>
+							<div class="col-sm-3" style=" border-left: 1px solid black; border-right: 1px solid black;">
+							Расположение
+							</div>
+							<div class="col-sm-2" style=" border-left: 1px solid black;">
+							Описание
+							</div>
+							<div class="col-sm-2" style=" border-left: 1px solid black;">
+							Тарный номер
+							</div>
+						<hr>
+							<div id="content">
+							<p> Сюда я буду выводить результат запроса :) </p>
+							</div>
+						</div>
+					</div>	
+					
 				</div>	
 			</div>
 		</div>	

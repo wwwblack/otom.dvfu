@@ -52,7 +52,7 @@ mysql_query("SET NAMES 'utf8';");
 			</button>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-						<li class="active"><a href="#">Каталог</a></li>
+						<li class="active"><a href="main.php">Каталог</a></li>
 					<li><a href="f_a_q.php">F.A.Q.</a></li>
 					<?php 
 						if (isset($_SESSION['login'])){
@@ -60,7 +60,7 @@ mysql_query("SET NAMES 'utf8';");
 						}
 						else
 						{
-							echo "<li><a href=\"..\index.php\">Вход</a></li>";
+							echo "<li><a href=\"index.php\">Вход</a></li>";
 						}
 						?>
 					<li><a href="FeedBack.html">FeedBack</a></li>

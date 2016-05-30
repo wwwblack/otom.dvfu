@@ -9,7 +9,7 @@ mysql_query("SET NAMES 'utf8';");
 	$htmlSelectOfRoom = $_POST['htmlSelectOfRoom'];
 	$htmlButtonValue= $_POST['htmlButtonValue'];
 	
-	$sqlZaprosForViewContent = "SELECT item.id, item.id_type_item, item.id_brend, item.id_position ,item.description_item, item.img_item, item.given, brend.title as titleOfBrend, room.position_name as nameOfPosition, type_item.name_type_item as itemTypeName   FROM item 
+	$sqlZaprosForViewContent = "SELECT item.id, item.id_type_item, item.id_brend, item.id_position, item.Containerboard_number  ,item.description_item, item.img_item, item.given, brend.title as titleOfBrend, room.position_name as nameOfPosition, type_item.name_type_item as itemTypeName   FROM item 
 										JOIN brend ON (brend.id=item.id_brend)
 										JOIN room ON (room.id=item.id_position)
 										JOIN type_item ON (type_item.id=item.id_type_item)
@@ -42,7 +42,7 @@ mysql_query("SET NAMES 'utf8';");
 						// Мой паповер вывод картинки
 						echo "
 						<div class =\"".$result['id']."\">
-							<div class=\"row\" >
+							<div class=\"row\" style=\"margin-top: 5px;\" >
 								<div class=\"col-sm-2\">
 									<button type=\"button\" class=\"btn btn-primary\" id=\"myPopover\" data-toggle=\"popover\" data-contentwrapper=\"#mypopover_".$result['id']."\">IMG</button>
 									<div id=\"mypopover_".$result['id']."\" style=\"display: none;\">
@@ -57,8 +57,11 @@ mysql_query("SET NAMES 'utf8';");
 							";	
 						
 						echo "
-								<div class=\"col-sm-4\"style=\"border-left: 1px solid black;\">
+								<div class=\"col-sm-2\"style=\"border-left: 1px solid black;\">
 									".$result["description_item"]."
+								</div>
+                                                                <div class=\"col-sm-2\"style=\"border-left: 1px solid black;\">
+									".$result["Containerboard_number"]."
 								</div>
 						";
 						//В батон записываем айди item и логин пользователя и отправляем для дальнейшей обработки	
