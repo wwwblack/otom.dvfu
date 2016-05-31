@@ -84,8 +84,7 @@ mysql_query("SET NAMES 'utf8';");
 				$user_data = mysql_fetch_array($sql1);
 			?>	
 			<form action="handler.php" method="post" id="my_form" enctype="multipart/form-data">
-			<label for="avatar">Аватар:</label>
-			
+                            <label for="avatar">Аватар:</label><br>
 			<img src="<?php echo $user_data['img'];?>" height="100">
 			
 				<button type=button class="btn btn-xs btn-success">Сменить фото</button>
@@ -336,7 +335,7 @@ case 2:
 break;
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 // Если это не Директор (Privilege не равно 2 или 1) то есть для обычных холопов
-////выпадающий список
+////выдающий список
 case 3;
 	//функция вывода взятого в использования оборудования
 	//------------------------------------------------------------------

@@ -119,9 +119,8 @@ mysql_query("SET NAMES 'utf8';");
 			
 		</div>
 		<div class="row">
-			<div  class="col-sm-12" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
-						<p>Выберите фильры</p>
-					<hr>
+			<div  class="col-sm-12" style=" border-left: 1px solid black; border-right: 1px solid black;">
+                            <p>Выберите фильры</p><br>
 							<select id="htmlSelectOfType_item" name="htmlSelectOfType_item">
 						<option value="" class="label">Тип Оборудования</option>
 
@@ -190,7 +189,7 @@ mysql_query("SET NAMES 'utf8';");
 	
 	</div>
 	</div>
-	<nav class="navbar navbar-default  navbar-fixed-bottom" role="navigation"></nav>
+	<nav class="navbar navbar-default  navbar-fixed-bottom" role="navigation">  </nav>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>	
 	<script src="../js/bootstrap.min.js"></script>

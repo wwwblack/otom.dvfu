@@ -43,7 +43,7 @@ mysql_query("SET NAMES 'utf8';");
 						echo "
 						<div class =\"".$result['id']."\">
 							<div class=\"row\" style=\"margin-top: 5px;\" >
-								<div class=\"col-sm-2\">
+								<div class=\"col-sm-1\">
 									<button type=\"button\" class=\"btn btn-primary\" id=\"myPopover\" data-toggle=\"popover\" data-contentwrapper=\"#mypopover_".$result['id']."\">IMG</button>
 									<div id=\"mypopover_".$result['id']."\" style=\"display: none;\">
 									  <div class=\"alert alert-danger\"><img src=\""./* Запрос картинки  */$result["img_item"]."\" width=\"150\" height=\"150\"></div>
@@ -51,13 +51,13 @@ mysql_query("SET NAMES 'utf8';");
 								</div>
 						";
 				
-						echo "	<div class=\"col-sm-3\" style=\"border-left: 1px solid black;\">
+						echo "	<div class=\"col-sm-2\" style=\"border-left: 1px solid black;\">
 									".$result['nameOfPosition']."
 								</div>
 							";	
 						
 						echo "
-								<div class=\"col-sm-2\"style=\"border-left: 1px solid black;\">
+								<div class=\"col-sm-4\"style=\"border-left: 1px solid black;\">
 									".$result["description_item"]."
 								</div>
                                                                 <div class=\"col-sm-2\"style=\"border-left: 1px solid black;\">
