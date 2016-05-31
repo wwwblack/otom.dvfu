@@ -27,7 +27,10 @@ mysql_query("SET NAMES 'utf8';");
 											$sqlZaprosForViewContent .= " AND `item`.`id_position` = $htmlSelectOfRoom";
 											echo mysql_error();	
 										}
-										
+	//Подсчёт строк
+	//----------------------------------------------------------
+	
+	//----------------------------------------------------------
 			
 				echo mysql_error();
 				$result_set = mysql_query($sqlZaprosForViewContent);
@@ -42,7 +45,7 @@ mysql_query("SET NAMES 'utf8';");
 						// Мой паповер вывод картинки
 						echo "
 						<div class =\"".$result['id']."\">
-							<div class=\"row\" style=\"margin-top: 5px;\" >
+							<div class=\"row\"  style=\"margin-top: 2px;\" >
 								<div class=\"col-sm-1\">
 									<button type=\"button\" class=\"btn btn-primary\" id=\"myPopover\" data-toggle=\"popover\" data-contentwrapper=\"#mypopover_".$result['id']."\">IMG</button>
 									<div id=\"mypopover_".$result['id']."\" style=\"display: none;\">
@@ -67,14 +70,15 @@ mysql_query("SET NAMES 'utf8';");
 						//В батон записываем айди item и логин пользователя и отправляем для дальнейшей обработки	
 						echo "
 								<div class=\"col-sm-1\" style=\"border-left: 1px solid black;\">
-									<div style=\"margin-left: 80%\">
+									<div>
 									<form method=\"POST\">
 									<button name=\"addItem\" type=\"submit\" class=\"btn btn-md btn-primary\" value=\"".$result["id"].":".$_SESSION['id']."\" >Взять</button>
 									</form>
 									</div>
 								</div>
+								<div class=\"col-sm-4\" style=\"border-left: 1px solid black;\"></div>
 						</div>
-						
+						</div>
 						";
 					}
 				}	
