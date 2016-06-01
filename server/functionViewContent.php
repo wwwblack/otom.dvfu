@@ -41,12 +41,17 @@ mysql_query("SET NAMES 'utf8';");
 				}
 				else {
 					//через уайл загружаем имеющиеся объекты
+					$i = 0;
 					while ($result = mysql_fetch_array($result_set)){
 						// Мой паповер вывод картинки
+						$i++;
 						echo "
 						<div class =\"".$result['id']."\">
 							<div class=\"row\"  style=\"margin-top: 2px;\" >
-								<div class=\"col-sm-1\">
+							<div class=\"col-sm-1\">
+							".$i."
+							</div>
+								<div class=\"col-sm-1\"  >
 									<button type=\"button\" class=\"btn btn-primary\" id=\"myPopover\" data-toggle=\"popover\" data-contentwrapper=\"#mypopover_".$result['id']."\">IMG</button>
 									<div id=\"mypopover_".$result['id']."\" style=\"display: none;\">
 									  <div class=\"alert alert-danger\"><img src=\""./* Запрос картинки  */$result["img_item"]."\" width=\"150\" height=\"150\"></div>
@@ -76,7 +81,7 @@ mysql_query("SET NAMES 'utf8';");
 									</form>
 									</div>
 								</div>
-								<div class=\"col-sm-4\" style=\"border-left: 1px solid black;\"></div>
+								<div class=\"col-sm-3\" style=\"border-left: 1px solid black;\"></div>
 						</div>
 						</div>
 						";

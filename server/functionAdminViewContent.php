@@ -74,14 +74,7 @@ switch ($userlist){
 	//тут мы вызываем информацию об аудиториях, можно редактировать, и удалить не нужную аудиторию.	
 	echo "
 	<script>
-	function funcBefore(){
-			$(\"#informationRoom\").html(\"<hr> Ожидайте ответа...\");
-		}
-	
-		function funcSuccess (data){
-			$(\"#informationRoom\").html (data);
-		
-		}
+
 	$(document).ready (function (){
 			//Скрипт для редактирования информации об аудиториях
 			$(\"#button_update_position_name\").bind(\"click\", function (){

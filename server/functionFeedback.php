@@ -7,7 +7,8 @@ include("mysql.php");
 include("function.php");
 $user_id = $_SESSION['id']; 
 $textWant = $_POST['textWant'];
-
+addFeedback($user_id,$textWant);
+function addFeedback($user_id,$textWant){
 $sql1 = mysql_query("INSERT INTO `feedback` (`id_user`, `text_feedback`) VALUES ('$user_id', '$textWant')");
 echo mysql_error();	
 
@@ -19,6 +20,6 @@ echo "
 	});
 	</script>
 ";
-
+}
 
 ?>

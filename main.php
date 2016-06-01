@@ -132,13 +132,14 @@ mysql_query("SET NAMES 'utf8';");
 	<div class="container">
 	<!-- Строка фильтров -->
 		<div class="row">
-			
-		</div>
-		<div class="row">
-			<div  class="col-sm-12" style=" border-left: 1px solid black; border-right: 1px solid black;">
-                            <p>Выберите фильры</p>
-                    <select id="htmlSelectOfType_item" onchange="dinamicSelectHtmlSelectOfType_item();" name="htmlSelectOfType_item">
-						<option value="" class="label">Тип Оборудования</option>
+		<div  class="col-sm-2">
+		
+		</div>	
+			<h1>Выберите критерии поиска</h1>
+				<div  class="col-sm-2">			
+					Тип оборудования<br>	
+                    <select style="  width: 150px;" id="htmlSelectOfType_item" onchange="dinamicSelectHtmlSelectOfType_item();" name="htmlSelectOfType_item">
+						<option value="" class="label">Все</option>
 
 										<?php
 										//Не забуть это переделать в ajax
@@ -149,8 +150,11 @@ mysql_query("SET NAMES 'utf8';");
 											}
 										?>
 					</select>
-					<select id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
-						<option value="" class="label">Производитель</option>
+				</div>	
+				<div  class="col-sm-2" >	
+					Производитель<br>
+					<select style="  width: 150px;" id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
+						<option value="" class="label">Все</option>
 										<?php
 										//Не забуть это переделать в ajax
 										//через селект вытаскиваем тип по айди
@@ -160,8 +164,11 @@ mysql_query("SET NAMES 'utf8';");
 											}
 										?>
 					</select>
-					<select id="htmlSelectOfRoom" name="htmlSelectOfRoom">
-						<option value=""  class="label">Помещение</option>
+				</div>	
+				<div  class="col-sm-2" >	
+					Местоположение<br>
+					<select style="  width: 150px;" id="htmlSelectOfRoom" name="htmlSelectOfRoom">
+						<option value=""  class="label">Все</option>
 											<?php
 											//Не забуть это переделать в ajax
 											//через селект вытаскиваем тип по айди
@@ -171,9 +178,15 @@ mysql_query("SET NAMES 'utf8';");
 												}
 											?>
 					</select>
-					
-					<input name="tag" type="text" id="tag" value="Поиск" size="20"/>
-					<button id="enter" type="submit">Поиск</button>						
+				</div>	
+				<div  class="col-sm-2">
+					Введите слово
+					<input name="tag" type="text" id="tag" placeholder="Поиск" size="10"/>
+				</div>
+						
+				<div  class="col-sm-1" >
+					<button class="btn btn-primary btn-sm" id="enter" type="submit">Поиск</button>						
+				</div>	
 			</div>
                     
                     
@@ -182,7 +195,8 @@ mysql_query("SET NAMES 'utf8';");
 		</div>
 	<div class="container">	
 		<div class="row" style=" box-shadow: 0 0 5px;  border-left: 1px solid black; border-right: 1px solid black;">
-					
+		
+							<div class="col-sm-1" style=" border-left: 1px solid black; margin-left: 0%; ">Номер</div>
 							<div class="col-sm-1" style=" border-left: 1px solid black; ">IMG</div>
 							<div class="col-sm-2" style=" border-left: 1px solid black;">
 							Местоположение
@@ -193,7 +207,7 @@ mysql_query("SET NAMES 'utf8';");
 							<div class="col-sm-2" style=" border-left: 1px solid black; border-right: 1px solid black;">
 							Тарный номер
 							</div>
-							<div class="col-sm-3" style=" border-left: 1px solid black; border-right: 1px solid black;">
+							<div class="col-sm-2" style=" border-left: 1px solid black; border-right: 1px solid black;">
 							
 							</div>
 						<hr>

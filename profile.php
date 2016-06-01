@@ -100,8 +100,10 @@ mysql_query("SET NAMES 'utf8';");
 			
 			
 			<div class="col-sm-6">
+				Мобильный телефон<br>
 				<input type="text" name="phone" size="30%" autocomplete="off" placeholder="<?php echo $user_data['phone'];?>">   <button type=button class="btn btn-md btn-success">Редактировать</button>
 				<hr>
+				Електронный адрес<br>
 				<input type="text" name="phone" size="30%" autocomplete="off" placeholder="<?php echo $user_data['e-mail'];?>">    <button type=button class="btn btn-md btn-success">Редактировать</button>
 			</div>
 			
@@ -138,8 +140,11 @@ switch ($_SESSION['privilege']){
 										</div>
 									</div>	
 									<div class=\"col-sm-6\">
+										Номер телефона
+										<br>
 										<input type=\"text\" name=\"phone\" size=\"30%\" autocomplete=\"off\" placeholder=\"".$result_sqlZaprosForDirector['phone']."\">
 										<hr>
+										Електронный адрес<br>
 										<input type=\"text\" name=\"phone\" size=\"30%\" autocomplete=\"off\" placeholder=\"".$result_sqlZaprosForDirector['e-mail']."\">
 									</div>
 								</div>
@@ -248,8 +253,12 @@ case 2:
 										</div>
 									</div>	
 									<div class=\"col-sm-6\">
+										Мобильный телефон
+										<br>
 										<input type=\"text\" name=\"phone\" size=\"30%\" autocomplete=\"off\" placeholder=\"".$result_sqlZaprosForDirector['phone']."\">
 										<hr>
+										Електронный адрес
+										<br>
 										<input type=\"text\" name=\"phone\" size=\"30%\" autocomplete=\"off\" placeholder=\"".$result_sqlZaprosForDirector['e-mail']."\">
 									</div>
 								</div>
