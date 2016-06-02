@@ -65,23 +65,26 @@ mysql_query("SET NAMES 'utf8';");
 							";	
 						
 						echo "
-								<div class=\"col-sm-4\"style=\"border-left: 1px solid black;\">
+								<div class=\"col-sm-3\"style=\"border-left: 1px solid black;\">
 									".$result["description_item"]."
 								</div>
-                                                                <div class=\"col-sm-2\"style=\"border-left: 1px solid black;\">
+                                <div class=\"col-sm-2\"style=\"border-left: 1px solid black;\">
 									".$result["Containerboard_number"]."
 								</div>
 						";
 						//В батон записываем айди item и логин пользователя и отправляем для дальнейшей обработки	
-						echo "
-								<div class=\"col-sm-1\" style=\"border-left: 1px solid black;\">
+						echo "	<form method=\"POST\">
+								<div class=\"col-sm-2\"style=\"border-left: 1px solid black;\">	
+									<input type=\"date\" style=\"\" name=\"days\" class=\"form-control\"/>
+								</div>
+								<div class=\"col-sm-1\" style=\"border-left: 1px solid black; border-right: 1px solid black;\">
 									<div>
-									<form method=\"POST\">
+									
 									<button name=\"addItem\" type=\"submit\" class=\"btn btn-md btn-primary\" value=\"".$result["id"].":".$_SESSION['id']."\" >Взять</button>
 									</form>
 									</div>
 								</div>
-								<div class=\"col-sm-3\" style=\"border-left: 1px solid black;\"></div>
+								<div class=\"col-sm-3\" style=\"border-left: 1px solid black; \"></div>
 						</div>
 						</div>
 						";

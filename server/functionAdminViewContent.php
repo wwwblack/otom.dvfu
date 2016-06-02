@@ -84,7 +84,7 @@ switch ($userlist){
 				$.ajax ({
 					url: \"server/functionAdmin.php\",
 					type: \"POST\",
-					data: ({button_update_position_name: button_update_position_name , update_position_name: update_position_name}),
+					data: ({button_update_position_name: button_update_position_name , update_position_name: update_position_name, functionAdmin: 1}),
 					dataType: \"text\",
 					beforeSend: funcBefore,
 					success: funcSuccess
@@ -97,7 +97,7 @@ switch ($userlist){
 				$.ajax ({
 					url: \"server/functionAdmin.php\",
 					type: \"POST\",
-					data: ({name_new_room: name_new_room, functionAdminDelete: 3}),
+					data: ({name_new_room: name_new_room, functionAdmin: 3}),
 					dataType: \"text\",
 					beforeSend: funcBefore,
 					success: funcSuccess
@@ -150,8 +150,8 @@ switch ($userlist){
 								echo "<tr><form method=\"POST\">";
 									echo "<td>".$result["position_name"]."</td>";
 									echo "<td><input id=\"update_position_name\" type=\"text\" name=\"position_name\" size=\"30%\" autocomplete=\"off\"  placeholder=\"".$result["position_name"]."\"></td>";
-									echo "<td><button id=\"button_update_position_name\" value= \"1:".$result["id"]."\">Редактировать </button></td>";
-									echo "<td><button id=\"delete_posiotion_name \" value=".$result["id"].">Удалить</button></td> ";
+									echo "<td><button id=\"button_update_position_name\" value= \"".$result["id"]."\">Редактировать </button></td>";
+									echo "<td><button id=\"delete_posiotion_name\" value=".$result["id"].">Удалить</button></td> ";
 								echo "</tr></form>";
 							}
 							

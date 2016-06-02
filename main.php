@@ -70,7 +70,7 @@ mysql_query("SET NAMES 'utf8';");
 		
 		//Плавное всплытие изображений-----------------------------------------------------------------------------------------------------------------------
 		
-		$("#addItem").bind("click", function (){
+	/*	$("#addItem").bind("click", function (){
 				var htmlSelectOfType_item = document.getElementById("htmlSelectOfType_item").value;
 				var htmlSelectOfBrend = document.getElementById("htmlSelectOfBrend").value;
 				var htmlSelectOfRoom = document.getElementById("htmlSelectOfRoom").value;
@@ -83,7 +83,7 @@ mysql_query("SET NAMES 'utf8';");
 					success: funcSuccess
 				});
 			});
-			
+			*/
 	/*	$(document).ready(function(){
 			 $("#tag").autocomplete("server/autocomplete.php", {
 					selectFirst: true
@@ -179,51 +179,52 @@ mysql_query("SET NAMES 'utf8';");
 											?>
 					</select>
 				</div>	
-				<div  class="col-sm-2">
+				<div  class="col-sm-2" style=" margin-bottom: 3px;">
 					Введите слово
-					<input name="tag" type="text" id="tag" placeholder="Поиск" size="10"/>
+					<input name="tag" type="text" id="tag" placeholder="Поиск" size="20"/>
 				</div>
 						
-				<div  class="col-sm-1" >
-					<button class="btn btn-primary btn-sm" id="enter" type="submit">Поиск</button>						
+				<div  class="col-sm-1" style=" margin-top: 10px;" >
+					<button class="btn btn-primary btn-md" id="enter" type="submit">Поиск</button>						
 				</div>	
 			</div>
                     
                     
-		</div>
+	</div>
         <hr>
-		</div>
 	<div class="container">	
-		<div class="row" style=" box-shadow: 0 0 5px;  border-left: 1px solid black; border-right: 1px solid black;">
+		<div class="row" style=" box-shadow: 0 0 1px;  border-left: 1px solid black; ">
 		
-							<div class="col-sm-1" style=" border-left: 1px solid black; margin-left: 0%; ">Номер</div>
+							<div class="col-sm-1" style="">Номер</div>
 							<div class="col-sm-1" style=" border-left: 1px solid black; ">IMG</div>
 							<div class="col-sm-2" style=" border-left: 1px solid black;">
 							Местоположение
 							</div>
-							<div class="col-sm-4" style=" border-left: 1px solid black;">
+							<div class="col-sm-3" style=" border-left: 1px solid black;">
 							Описание
 							</div>
 							<div class="col-sm-2" style=" border-left: 1px solid black; border-right: 1px solid black;">
 							Тарный номер
 							</div>
-							<div class="col-sm-2" style=" border-left: 1px solid black; border-right: 1px solid black;">
-							
+							<div class="col-sm-2" style="  border-right: 1px solid black;">
+							Дата возврата
 							</div>
-						<hr>
-							<div id="content">
-							<p> Сюда выводяться результаты поиска </p>
+							<div class="col-sm-2" style=" border-left: 1px solid black;">
+							</div>
+		</div>
+	</div>	
+<div class="container">			
+							<div id="content" >
+							
 							</div>
 						
 						
 					
-				</div>	
-			</div>
-		</div>	
-	<br>
+		
+						
+	</div>		
+							
 	
-	</div>
-	</div>
 	<nav class="navbar navbar-default  navbar-fixed-bottom" role="navigation">  </nav>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>	

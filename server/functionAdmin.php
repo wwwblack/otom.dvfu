@@ -2,11 +2,10 @@
 session_start();
 include("mysql.php");
 //В переменной ниже содержиться 1 - номер функции; 2 - id аудитории чтобы найти его в базе
-$button_update_position_name = $_POST['button_update_position_name'];
+$id_position_name = $_POST['button_update_position_name'];
 //ниже переменная - это обновлённое название аудитории
 $update_position_name = $_POST['update_position_name'];
 $update_position_name = mysql_real_escape_string($update_position_name);
-list($functionAdmin, $id_position_name) = explode(":", $button_update_position_name);
 
 $functionAdmin = $_POST['functionAdmin'];
 $name_new_room = $_POST['name_new_room'];
