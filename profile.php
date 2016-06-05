@@ -51,7 +51,7 @@ mysql_query("SET NAMES 'utf8';");
 				<ul class="nav navbar-nav navbar-right">
 				
 					<li ><a href="main.php">Каталог</a></li>
-					<li><a href="f_a_q.php">F.A.Q.</a></li>
+					<li><a href="f_a_q.php">FAQ</a></li>
 					<?php 
 					if ($_SESSION['privilege'] == 1 ){
 						echo "<li><a href=\"admin.php\">Админочка</a></li>";
@@ -129,7 +129,7 @@ mysql_query("SET NAMES 'utf8';");
 <?php
 
 
-
+// интерфейс для админа
 switch ($_SESSION['privilege']){
 	
 	case 1:
@@ -144,7 +144,7 @@ switch ($_SESSION['privilege']){
 				<div class=\"row\"  >
 					<div class=\"panel\">
 						<div class=\"title\">".$result_sqlZaprosForDirector['name']." ".$result_sqlZaprosForDirector['last_Name']." | Задолженость = ".$total."</div>
-							<div class=\"inner\" >
+							<div class=\"inner\" style=\"display: none;\" >
 								<div class=\"row\" >	
 									<div class=\"col-sm-2\">		
 										<img src=\"".$result_sqlZaprosForDirector['img']."\" height=\"100\">
@@ -244,7 +244,7 @@ switch ($_SESSION['privilege']){
 	}
 
 break;
-
+// интерфейс для директора
 case 2:
 	// Производим запрос всех сотрудников для спойлеров
 	$sqlZaprosForDirector = mysql_query("SELECT * FROM users");
@@ -257,7 +257,7 @@ case 2:
 				<div class=\"row\"  >
 					<div class=\"panel\">
 						<div class=\"title\">".$result_sqlZaprosForDirector['name']." ".$result_sqlZaprosForDirector['last_Name']." | Задолженость = ".$total."</div>
-							<div class=\"inner\" >
+							<div class=\"inner\"  style=\"display: none;\">
 								<div class=\"row\" >	
 									<div class=\"col-sm-2\">		
 										<img src=\"".$result_sqlZaprosForDirector['img']."\" height=\"100\">
@@ -312,8 +312,18 @@ case 2:
 				$sqlzapros4 = mysql_query("SELECT id, time, dead_Time FROM user_item WHERE `id_item` = '$id_itemForZapros'");	
 				$result_id_itemForZapros = mysql_fetch_array($sqlzapros4);
 				//------------------------------------------------------------------
+				//тут производим проверку на дату возврата. если сегодняшняя дата больше чем дата возврата то забиваем в переменную 
+				$now=date("Y-m-d H:i:s");
+				$dead_time  = $result_id_itemForZapros['dead_Time'];
+				if ($now > $dead_time) {
+				  $prosrochka = 'background-color: red;';
+				  
+				}
+				else{
+					$prosrochka = " ";
+				}
 				echo "
-					<div class=\"row\">
+					<div class=\"row\" >
 					<hr>
 						<div class=\"col-sm-2\" >
 							<img src=\""./* Запрос картинки  */$result["img_item"]."\" width=\"100\" height=\"100\">
@@ -326,7 +336,7 @@ case 2:
 						</div>	
 						<div class=\"col-sm-3\">
 							<br>Дата вручения - ".$result_id_itemForZapros['time']."
-							<br>Дата окончани - ".$result_id_itemForZapros['dead_Time']."
+							<br><div style = \"".$prosrochka."\">Дата окончани - ".$result_id_itemForZapros['dead_Time']."</div>
 						</div>
 						<div class=\"col-sm-4\">
 							<form  method=\"POST\">";

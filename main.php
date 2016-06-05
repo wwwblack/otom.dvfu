@@ -111,7 +111,7 @@ mysql_query("SET NAMES 'utf8';");
 				<ul class="nav navbar-nav navbar-right">
 				
 					<li class="active"><a href="#">Каталог</a></li>
-					<li><a href="f_a_q.php">F.A.Q.</a></li>
+					<li><a href="f_a_q.php">FAQ</a></li>
 					<?php 
 						if (isset($_SESSION['login'])){
 							echo  "	

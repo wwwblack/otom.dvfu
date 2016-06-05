@@ -33,14 +33,14 @@ mysql_query("SET NAMES 'utf8';");
 		$(document).ready (function (){
 			$("#find").bind("click", function (){
 			//	var htmlSelectOfType_item = document.getElementById("htmlSelectOfType_item").value;
-			//	var htmlSelectOfBrend = document.getElementById("htmlSelectOfBrend").value;
+			var htmlSelectOfBrend = document.getElementById("htmlSelectOfBrend").value;
 			//	var htmlSelectOfRoom = document.getElementById("htmlSelectOfRoom").value;
 			//htmlSelectOfType_item: htmlSelectOfType_item, htmlSelectOfBrend: htmlSelectOfBrend, htmlSelectOfRoom:htmlSelectOfRoom, 
 				var buttonValueForFunction = document.getElementById("find").value;
 				$.ajax ({
 					url: "server/functionfaq.php",
 					type: "POST",
-					data: ({buttonValueForFunction: buttonValueForFunction}),
+					data: ({buttonValueForFunction: buttonValueForFunction, htmlSelectOfBrend:htmlSelectOfBrend}),
 					dataType: "text",
 					beforeSend: funcBefore,
 					success: funcSuccess
@@ -51,10 +51,11 @@ mysql_query("SET NAMES 'utf8';");
 			$("#enter").bind("click", function (){
 				var buttonValueForFunction = document.getElementById("enter").value;
 				var f_a_q_question = document.getElementById("question").value;
+				var htmlSelectOfBrendForAddQuestion = document.getElementById("htmlSelectOfBrendForAddQuestion").value;
 				$.ajax ({
 					url: "server/functionfaq.php",
 					type: "POST",
-					data: ({f_a_q_question: f_a_q_question, buttonValueForFunction: buttonValueForFunction}),
+					data: ({f_a_q_question: f_a_q_question, buttonValueForFunction: buttonValueForFunction, htmlSelectOfBrendForAddQuestion:htmlSelectOfBrendForAddQuestion}),
 					dataType: "text",
 					beforeSend: funcBefore,
 					success: funcSuccess
@@ -101,63 +102,87 @@ mysql_query("SET NAMES 'utf8';");
 			</div>	
 		</div>	
 	</nav>
-
 	<div class="container">
 	<!-- Строка фильтров -->
 		<div class="row">
-			<div class=\"col-sm-12\" style=\"background-color: #BDC2E8; box-shadow: 0 0 5px; border-radius: 20px; border-left: 1px solid black; border-right: 1px solid black;\">
-				
-			</div>		
+			<div class="col-sm-6" style=\"background-color: #BDC2E8; box-shadow: 0 0 5px; border-radius: 20px; border-left: 1px solid black; border-right: 1px solid black;\">
+				<!--СПОЙЛЕР ФАЗАФАКА! -->
+					<div class="panel panel-default">
+						<div class="panel-heading">
+						  <h4 class="panel-title">
+								  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+								   Поиск вопросов
+								  </a>
+								</h4>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse">
+							<div class="panel-body">
+								<select style="  width: 150px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
+										<option value="" class="label">Производитель</option>
+														<?php
+														//Не забуть это переделать в ajax
+														//через селект вытаскиваем тип по айди
+															$sqlZaprosBrend = mysql_query("SELECT * FROM brend ORDER BY title ");
+															while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
+																echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
+															}
+														?>
+								</select>
+								
+								<select style="  width: 150px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
+										<option value="" class="label">Решённость</option>
+										<option select value="0" >Ответ найден</option>
+										<option select value="1" >Ответ не найден</option>
+								</select>
+								<button class="btn btn-primary btn-md" id="find" value="1" type="submit">Поиск</button>
+							</div>
+						</div>
+					</div>
+				<!--СПОЙЛЕР закончился ФАЗАФАКА! -->
+			</div>	
+			<div class="col-sm-6" >
+				<!--СПОЙЛЕР ФАЗАФАКА! -->
+					<div class="panel panel-default" >
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+									Задать вопрос
+								</a>
+							</h4>
+						</div>
+						<div id="collapseTwo" class="panel-collapse collapse">
+							<div class="panel-body">
+								<select style=" width: 150px;"  id="htmlSelectOfBrendForAddQuestion" name="htmlSelectOfBrendForAddQuestion" >
+										<option value="" class="label">Производитель</option>
+														<?php
+														//Не забуть это переделать в ajax
+														//через селект вытаскиваем тип по айди
+															$sqlZaprosBrend = mysql_query("SELECT * FROM brend ORDER BY title ");
+															while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
+																echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
+															}
+														?>
+								</select>
+								<p>Задать вопрос:</p>
+								<textarea id="question" name="question" style="width:90%; background-color:#FDF5E6; height:100px;  min-height:10px;resize:none;"></textarea>
+								<br>
+								<button id="enter" class="btn btn-primary btn-md"  style="" value="2" type="submit">Потвердить</button>
+							</div>
+						</div>
+					</div>
+				<!--СПОЙЛЕР закончился ФАЗАФАКА! -->
+			</div>
+	
 		</div>
 		<div class="row">
 			<div class="col-sm-12">
-				<div class="row">
-					<div class="col-sm-6" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
-					<hr>
-						<div id="content">
+				<div id="content">
 						
-						</div>
-					</div>
-					<div  class="col-sm-6 fixed" style=" box-shadow: 0 0 5px; border-radius: 5px; border-left: 1px solid black; border-right: 1px solid black;">
-					<br>					
-				<select id="htmlSelectOfType_item" name="htmlSelectOfType_item">
-							<option value="" class="label">Тип Оборудования</option>
-
-									<?php
-									//Не забуть это переделать в ajax
-									//через селект вытаскиваем тип по айди
-										$sqlZaprosType_item = mysql_query("SELECT * FROM type_item ORDER BY name_type_item");
-										while ($result_sqlZaprosType_item = mysql_fetch_array($sqlZaprosType_item)) {
-											echo "<option select value =".$result_sqlZaprosType_item["id"].">".$result_sqlZaprosType_item['name_type_item']."";	
-										}
-									?>
-				</select>
-				<select id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
-					<option value="" class="label">Производитель</option>
-									<?php
-									//Не забуть это переделать в ajax
-									//через селект вытаскиваем тип по айди
-										$sqlZaprosBrend = mysql_query("SELECT * FROM brend ORDER BY title ");
-										while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
-											echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
-										}
-									?>
-				</select>
-				<button id="find" value="1" type="submit">Поиск</button>
-				<br>
-				<hr>
-				<p>Задать вопрос:</p>
-				<textarea id="question" name="question" style="width:100%; background-color:#FDF5E6; margin-top:1%;height:150px; margin-left:2%; min-height:10px;resize:none;"></textarea>
-				<br>
-				<button id="enter"  style="margin-left:77%;" value="2" type="submit">Потвердить</button>
-					</div>
-				</div>	
+				</div>
 			</div>
 		</div>	
-	<br>
+	</div>
 	
-	</div>
-	</div>
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>	
