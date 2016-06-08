@@ -32,15 +32,12 @@ mysql_query("SET NAMES 'utf8';");
 		
 		$(document).ready (function (){
 			$("#find").bind("click", function (){
-			//	var htmlSelectOfType_item = document.getElementById("htmlSelectOfType_item").value;
+			var functionValue = document.getElementById("find").value;	
 			var htmlSelectOfBrend = document.getElementById("htmlSelectOfBrend").value;
-			//	var htmlSelectOfRoom = document.getElementById("htmlSelectOfRoom").value;
-			//htmlSelectOfType_item: htmlSelectOfType_item, htmlSelectOfBrend: htmlSelectOfBrend, htmlSelectOfRoom:htmlSelectOfRoom, 
-				var buttonValueForFunction = document.getElementById("find").value;
-				$.ajax ({
-					url: "server/functionfaq.php",
+			$.ajax ({
+					url: "server/functionAjax.php",
 					type: "POST",
-					data: ({buttonValueForFunction: buttonValueForFunction, htmlSelectOfBrend:htmlSelectOfBrend}),
+					data: ({functionValue: functionValue, htmlSelectOfBrend: htmlSelectOfBrend}),
 					dataType: "text",
 					beforeSend: funcBefore,
 					success: funcSuccess
@@ -49,13 +46,13 @@ mysql_query("SET NAMES 'utf8';");
 			//-------------------------------------------------------------
 			//Добавление вопроса 
 			$("#enter").bind("click", function (){
-				var buttonValueForFunction = document.getElementById("enter").value;
-				var f_a_q_question = document.getElementById("question").value;
+				var functionValue = document.getElementById("enter").value;
 				var htmlSelectOfBrendForAddQuestion = document.getElementById("htmlSelectOfBrendForAddQuestion").value;
+				var f_a_q_question = document.getElementById("question").value;
 				$.ajax ({
-					url: "server/functionfaq.php",
+					url: "server/functionAjax.php",
 					type: "POST",
-					data: ({f_a_q_question: f_a_q_question, buttonValueForFunction: buttonValueForFunction, htmlSelectOfBrendForAddQuestion:htmlSelectOfBrendForAddQuestion}),
+					data: ({functionValue: functionValue, f_a_q_question: f_a_q_question,  htmlSelectOfBrendForAddQuestion:htmlSelectOfBrendForAddQuestion}),
 					dataType: "text",
 					beforeSend: funcBefore,
 					success: funcSuccess
@@ -103,9 +100,9 @@ mysql_query("SET NAMES 'utf8';");
 		</div>	
 	</nav>
 	<div class="container">
-	<!-- Строка фильтров -->
+	
 		<div class="row">
-			<div class="col-sm-6" style=\"background-color: #BDC2E8; box-shadow: 0 0 5px; border-radius: 20px; border-left: 1px solid black; border-right: 1px solid black;\">
+			<div class="col-sm-4" style=\"background-color: #BDC2E8; box-shadow: 0 0 5px; border-radius: 20px; border-left: 1px solid black; border-right: 1px solid black;\">
 				<!--СПОЙЛЕР ФАЗАФАКА! -->
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -117,6 +114,7 @@ mysql_query("SET NAMES 'utf8';");
 						</div>
 						<div id="collapseOne" class="panel-collapse collapse">
 							<div class="panel-body">
+								Производитель &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;         Решённость<br>
 								<select style="  width: 150px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
 										<option value="" class="label">Производитель</option>
 														<?php
@@ -128,19 +126,49 @@ mysql_query("SET NAMES 'utf8';");
 															}
 														?>
 								</select>
-								
+								        
 								<select style="  width: 150px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
 										<option value="" class="label">Решённость</option>
 										<option select value="0" >Ответ найден</option>
 										<option select value="1" >Ответ не найден</option>
 								</select>
-								<button class="btn btn-primary btn-md" id="find" value="1" type="submit">Поиск</button>
+								<button class="btn btn-primary btn-md" id="find" value="6" type="submit">Поиск</button>
+							</div>
+						</div>
+					</div>
+				<!--СПОЙЛЕР закончился ФАЗАФАКА! -->
+			</div>
+			<div class="col-sm-4" style=\"background-color: #BDC2E8; box-shadow: 0 0 5px; border-radius: 20px; border-left: 1px solid black; border-right: 1px solid black;\">
+				<!--СПОЙЛЕР ФАЗАФАКА! -->
+					<div class="panel panel-default">
+						<div class="panel-heading">
+						  <h4 class="panel-title">
+								  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+								   Поиск мануалов
+								  </a>
+								</h4>
+						</div>
+						<div id="collapseThree" class="panel-collapse collapse">
+							<div class="panel-body">
+								Производитель<br>
+								<select style="  width: 150px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
+										<option value="" class="label">Производитель</option>
+														<?php
+														//Не забуть это переделать в ajax
+														//через селект вытаскиваем тип по айди
+															$sqlZaprosBrend = mysql_query("SELECT * FROM brend ORDER BY title ");
+															while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
+																echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
+															}
+														?>
+								</select>
+								<button class="btn btn-primary btn-md" id="find" value="10" type="submit">Поиск</button>
 							</div>
 						</div>
 					</div>
 				<!--СПОЙЛЕР закончился ФАЗАФАКА! -->
 			</div>	
-			<div class="col-sm-6" >
+			<div class="col-sm-4" >
 				<!--СПОЙЛЕР ФАЗАФАКА! -->
 					<div class="panel panel-default" >
 						<div class="panel-heading">
@@ -164,9 +192,9 @@ mysql_query("SET NAMES 'utf8';");
 														?>
 								</select>
 								<p>Задать вопрос:</p>
-								<textarea id="question" name="question" style="width:90%; background-color:#FDF5E6; height:100px;  min-height:10px;resize:none;"></textarea>
+								<textarea id="question" name="question" style="width:90%; background-color:#FDF5E6; height:50px;  min-height:10px;resize:none;"></textarea>
 								<br>
-								<button id="enter" class="btn btn-primary btn-md"  style="" value="2" type="submit">Потвердить</button>
+								<button id="enter" class="btn btn-primary btn-md"  style="" value="7" type="submit">Потвердить</button>
 							</div>
 						</div>
 					</div>

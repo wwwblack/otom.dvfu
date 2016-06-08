@@ -100,11 +100,15 @@ mysql_query("SET NAMES 'utf8';");
 			
 			
 			<div class="col-sm-6">
-				Мобильный телефон<br>
-				<input type="text" name="phone" size="30%" autocomplete="off" placeholder="<?php echo $user_data['phone'];?>">   <button type=button class="btn btn-md btn-success">Редактировать</button>
+				<form method="POST">
+					Мобильный телефон<br>
+					<input type="text" name="phone" size="30%" autocomplete="off" placeholder="<?php echo $user_data['phone'];?>">     <button name="updateMobilePhone" type=\"submit\"  type=button class="btn btn-md btn-success">Редактировать</button>
+				</form>
 				<hr>
 				Електронный адрес<br>
-				<input type="text" name="phone" size="30%" autocomplete="off" placeholder="<?php echo $user_data['e-mail'];?>">    <button type=button class="btn btn-md btn-success">Редактировать</button>
+				<form method="POST">
+				<input type="text" name="mail" size="30%" autocomplete="off" placeholder="<?php echo $user_data['e-mail'];?>">    <button name="updateEmail" type=\"submit\" type=button class="btn btn-md btn-success">Редактировать</button>
+				</form>
 			</div>
 			
 		</div>
@@ -271,11 +275,11 @@ case 2:
 									<div class=\"col-sm-6\">
 										Мобильный телефон
 										<br>
-										<input type=\"text\" name=\"phone\" size=\"30%\" autocomplete=\"off\" placeholder=\"".$result_sqlZaprosForDirector['phone']."\">
+										".$result_sqlZaprosForDirector['phone']."
 										<hr>
 										Електронный адрес
 										<br>
-										<input type=\"text\" name=\"phone\" size=\"30%\" autocomplete=\"off\" placeholder=\"".$result_sqlZaprosForDirector['e-mail']."\">
+										".$result_sqlZaprosForDirector['e-mail']."
 									</div>
 								</div>
 								

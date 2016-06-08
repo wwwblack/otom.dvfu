@@ -4,10 +4,10 @@
 if ( isset( $_POST['addItem'] ) ){
 		$valueItem = $_POST['addItem'];
 		$days = $_POST['days'];
-		addItem($valueItem,$days);	
+		functionAddUserItem($valueItem,$days);	
 	}
 
-function addItem ($valueItem,$days){
+function functionAddUserItem ($valueItem,$days){
 	//парсим на две переменные
 	list($idItem, $id_user) = explode(":", $valueItem);
 	// Добавляем 1 в таблицу given, для того чтобы убрать с отображения на главной
@@ -18,13 +18,13 @@ function addItem ($valueItem,$days){
 	echo mysql_error();	
 }
 //------------------------------------------------------------------------------------------------------
-//Функция возврата оборудования
+//Функция возврата оборудования из таблицы user_item
 if ( isset( $_POST['deleteItem'] ) ){
 		$valueDeleteItem = $_POST['deleteItem'];
-		deleteItem($valueDeleteItem);			
+		functionDeleteUserItem($valueDeleteItem);			
 	}
 
-function deleteItem ($valueDeleteItem){
+function functionDeleteUserItem ($valueDeleteItem){
 	list($idItemInTable_Item, $id_user, $idItemInTable_User_item ) = explode(":", $valueDeleteItem);
 	//--------------------------------------------------------------------------------------------------
 	//Возвращаем 
@@ -68,25 +68,26 @@ Function add_item (){
 					print "</pre>";
 }
 
-//-----------------------------------------------------------------------------------------------------------------------
-//Вывод взятых единиц оборудования на страничке profile.php
-//-------------------------------------------
+if ( isset( $_POST[''] ) ){
+		$phone = $_POST['phone'];
+		functionUpdateMobilePhone($phone);	
+	}
 
+function fnctionUpdateMobilePhone ($phone) {
+	$idUser = $_SESSION['id'];
+	$sqlzapros1 = mysql_query("UPDATE `users` SET  `phone` = '$phone' WHERE `id` = '$idUser'");
+	echo mysql_error();
+}
 
+if ( isset( $_POST['updateEmail'] ) ){
+		$mail = $_POST['mail'];
+		functionUpdateEmail($mail);	
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-				
+function functionUpdateEmail ($mail) {
+	$idUser = $_SESSION['id'];
+	$sqlzapros1 = mysql_query("UPDATE `users` SET  `e-mail` = '$mail' WHERE `id` = '$idUser'");
+	echo mysql_error();
+}
 
 ?> 

@@ -1,9 +1,12 @@
 <?php
-//Данная функция выводит записи об оборудовании. на страничку main.php, используется через AJAX.
 session_start();
 include("mysql.php");
 mysql_query("SET NAMES 'utf8';");
 
+
+//функция отвечающая за вывод списка оборудования на страницу main.php  выволняется кнопкой номер 1.
+function funcionViewContentOnMainPage() {
+	
 	$htmlSelectOfType_item = $_POST['htmlSelectOfType_item'];
 	$htmlSelectOfBrend = $_POST['htmlSelectOfBrend'];
 	$htmlSelectOfRoom = $_POST['htmlSelectOfRoom'];
@@ -73,14 +76,14 @@ mysql_query("SET NAMES 'utf8';");
 								</div>
 						";
 						//В батон записываем айди item и логин пользователя и отправляем для дальнейшей обработки	
-						echo "	<form name=\"".$result["id"]."\" method=\"POST\">
+						echo "	<form method=\"POST\">
 								<div class=\"col-sm-2\"style=\"border-left: 1px solid black;\">	
 									<input type=\"date\" style=\"\" name=\"days\" class=\"form-control\"/>
 								</div>
 								<div class=\"col-sm-1\" style=\"border-left: 1px solid black; border-right: 1px solid black;\">
 									<div>
 									
-									<button name=\"addItem\" type=\"submit\" class=\"btn btn-md btn-primary\" onclick=\"var formId = ".$result["id"]."; myFunction(formId)\" value=\"".$result["id"].":".$_SESSION['id']."\" >Взять</button>
+									<button name=\"addItem\" type=\"submit\" class=\"btn btn-md btn-primary\" value=\"".$result["id"].":".$_SESSION['id']."\" >Взять</button>
 									</form>
 									</div>
 								</div>
@@ -102,4 +105,61 @@ mysql_query("SET NAMES 'utf8';");
 							})
 						</script>
 					";
-?>				
+}
+//Функция отвечающая за вывод информации на страницу ФАКА. 
+function functionViewContentOnFAQPage(){
+	$i = 20;
+		$htmlSelectOfBrend = $_POST['htmlSelectOfBrend'];
+		$sqlzapros1 = mysql_query("SELECT * FROM f_a_q_question WHERE `id_brend` = '$htmlSelectOfBrend' ");
+		echo mysql_error();
+			while ($resultFAQ = mysql_fetch_array($sqlzapros1)){
+				$i++;
+				echo "
+				<div class =\"".$resultFAQ['id']."\">
+					<div class=\"row\" style=\" box-shadow: 0 0 5px; border-left: 1px solid black; border-right: 1px solid black;\" >
+						<div class=\"col-sm-12\">
+							".$resultFAQ['question']."	
+							<button class=\"btn btn-success btn-md\"  id=\"questionExecuted\"  style=\"margin-left:92%;\" value=\"4\" type=\"submit\">
+								Разрешён
+							</button>
+							<br>
+							Ответить
+							<br>
+							<textarea id=\"question\" name=\"question\" style=\"width:90%; background-color:#FDF5E6; margin-top:1%;height:50px; margin-left:2%; min-height:10px;resize:none;\"></textarea></br>
+							<button class=\"btn btn-primary btn-md\"  id=\"addAnswer\"  style=\"margin-left:83%;\" value=\"3\" type=\"submit\">
+								Потвердить
+							</button>
+							
+									<div class=\"panel panel-default\" >
+										<div class=\"panel-heading\">
+											<h4 class=\"panel-title\">
+												<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#".$i."\">
+													Посмотреть ответы
+												</a>
+											</h4>
+										</div>
+										<div id=\"".$i."\" class=\"panel-collapse collapse\">
+											<div class=\"panel-body\">
+											Для того чтобы решить эту проблему, попробуй нажать на кнопку старт. А так же проверь комутацию. куда идёт in и  out. 
+											<br>
+											<a>Егор</a>
+											</div>
+										</div>
+									</div>								
+						</div>
+					</div>
+				</div>
+				<hr>
+				";
+			}
+}
+//функция отвечающая за добавление новоо вопроса в FAQ
+function functionAddNewQuestion(){
+	$htmlSelectOfBrendForAddQuestion = $_POST['htmlSelectOfBrendForAddQuestion'];
+		$f_a_q_question = $_POST['f_a_q_question'];
+		//$f_a_q_question = mysql_real_escape_string($f_a_q_question);
+		$id_user = $_SESSION['id'];
+		$sqlzapros2 = mysql_query("INSERT INTO `f_a_q_question` (`id_brend`, `id_user`, `question`, `executed`) VALUES ('$htmlSelectOfBrendForAddQuestion', '$id_user', '$f_a_q_question', '0')");
+		echo mysql_error();
+}
+?>

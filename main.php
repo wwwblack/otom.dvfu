@@ -1,8 +1,8 @@
 <?php
 session_start();
 include("/server/mysql.php");
-include("/server/function.php");
 mysql_query("SET NAMES 'utf8';");
+include("/server/function.php");
 ?>
 <html>
 	<head>
@@ -37,18 +37,24 @@ mysql_query("SET NAMES 'utf8';");
 		
 		$(document).ready (function (){
 			$("#enter").bind("click", function (){
+				var functionValue = document.getElementById("enter").value; 
 				var htmlSelectOfType_item = document.getElementById("htmlSelectOfType_item").value;
 				var htmlSelectOfBrend = document.getElementById("htmlSelectOfBrend").value;
 				var htmlSelectOfRoom = document.getElementById("htmlSelectOfRoom").value;
 				$.ajax ({
-					url: "server/functionViewContent.php",
+					url: "server/functionAjax.php",
 					type: "POST",
-					data: ({htmlSelectOfType_item: htmlSelectOfType_item, htmlSelectOfBrend: htmlSelectOfBrend, htmlSelectOfRoom:htmlSelectOfRoom}),
+					data: ({functionValue: functionValue, htmlSelectOfType_item: htmlSelectOfType_item, htmlSelectOfBrend: htmlSelectOfBrend, htmlSelectOfRoom:htmlSelectOfRoom}),
 					dataType: "text",
 					beforeSend: funcBefore,
 					success: funcSuccess
 				});
 			});
+		
+		function addUserItem(formId) {
+			alert (formId);
+			
+		}
 		});
 		// Конец AJAX Функции --------------------------------------------------------------------------------------------------------------------------------	
 		
@@ -185,7 +191,7 @@ mysql_query("SET NAMES 'utf8';");
 				</div>
 						
 				<div  class="col-sm-1" style=" margin-top: 10px;" >
-					<button class="btn btn-primary btn-md" id="enter" type="submit">Поиск</button>						
+					<button value="1" class="btn btn-primary btn-md" id="enter" type="submit">Поиск</button>						
 				</div>	
 			</div>
                     
@@ -193,7 +199,7 @@ mysql_query("SET NAMES 'utf8';");
 	</div>
         <hr>
 	<div class="container">	
-		<div class="row" style=" box-shadow: 0 0 1px;  border-left: 1px solid black; ">
+		<div class="row hidden-xs hidden-sm" style=" box-shadow: 0 0 1px;  border-left: 1px solid black; ">
 		
 							<div class="col-sm-1" style="">Номер</div>
 							<div class="col-sm-1" style=" border-left: 1px solid black; ">IMG</div>
