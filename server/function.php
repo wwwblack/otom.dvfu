@@ -68,9 +68,9 @@ Function add_item (){
 					print "</pre>";
 }
 
-if ( isset( $_POST[''] ) ){
+if ( isset( $_POST['updateMobilePhone'] ) ){
 		$phone = $_POST['phone'];
-		functionUpdateMobilePhone($phone);	
+		fnctionUpdateMobilePhone($phone);	
 	}
 
 function fnctionUpdateMobilePhone ($phone) {
@@ -89,5 +89,4 @@ function functionUpdateEmail ($mail) {
 	$sqlzapros1 = mysql_query("UPDATE `users` SET  `e-mail` = '$mail' WHERE `id` = '$idUser'");
 	echo mysql_error();
 }
-
 ?> 

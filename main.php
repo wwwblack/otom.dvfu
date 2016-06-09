@@ -186,7 +186,7 @@ include("/server/function.php");
 					</select>
 				</div>	
 				<div  class="col-sm-2" style=" margin-bottom: 3px;">
-					Введите слово
+					Введите слово<br>
 					<input name="tag" type="text" id="tag" placeholder="Поиск" size="20"/>
 				</div>
 						

@@ -116,7 +116,7 @@ mysql_query("SET NAMES 'utf8';");
 							<div class="panel-body">
 								Производитель &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;         Решённость<br>
 								<select style="  width: 150px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
-										<option value="" class="label">Производитель</option>
+										<option value="" class="label">Все</option>
 														<?php
 														//Не забуть это переделать в ajax
 														//через селект вытаскиваем тип по айди
@@ -128,7 +128,7 @@ mysql_query("SET NAMES 'utf8';");
 								</select>
 								        
 								<select style="  width: 150px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
-										<option value="" class="label">Решённость</option>
+										<option value="" class="label">Все</option>
 										<option select value="0" >Ответ найден</option>
 										<option select value="1" >Ответ не найден</option>
 								</select>

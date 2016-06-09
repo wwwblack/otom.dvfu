@@ -202,6 +202,16 @@ switch ($_SESSION['privilege']){
 				$sqlzapros4 = mysql_query("SELECT id, time, dead_Time FROM user_item WHERE `id_item` = '$id_itemForZapros'");	
 				$result_id_itemForZapros = mysql_fetch_array($sqlzapros4);
 				//------------------------------------------------------------------
+				//тут производим проверку на дату возврата. если сегодняшняя дата больше чем дата возврата то забиваем в переменную 
+				$now=date("Y-m-d H:i:s");
+				$dead_time  = $result_id_itemForZapros['dead_Time'];
+				if ($now > $dead_time) {
+				  $prosrochka = 'background-color: red;';
+				  
+				}
+				else{
+					$prosrochka = " ";
+				}
 				echo "
 					<div class=\"row\">
 					<hr>
@@ -216,7 +226,7 @@ switch ($_SESSION['privilege']){
 						</div>	
 						<div class=\"col-sm-3\">
 							<br>Дата вручения - ".$result_id_itemForZapros['time']."
-							<br>Дата окончани - ".$result_id_itemForZapros['dead_Time']."
+							<br><div style = \"".$prosrochka."\">Дата окончани - ".$result_id_itemForZapros['dead_Time']."</div>
 						</div>
 						<div class=\"col-sm-4\">
 							<form  method=\"POST\">";
@@ -409,6 +419,16 @@ case 3;
 				$sqlzapros4 = mysql_query("SELECT id, time, dead_Time FROM user_item WHERE `id_item` = '$id_itemForZapros'");	
 				$result_id_itemForZapros = mysql_fetch_array($sqlzapros4);
 				//------------------------------------------------------------------
+				//тут производим проверку на дату возврата. если сегодняшняя дата больше чем дата возврата то забиваем в переменную 
+				$now=date("Y-m-d H:i:s");
+				$dead_time  = $result_id_itemForZapros['dead_Time'];
+				if ($now > $dead_time) {
+				  $prosrochka = 'background-color: red;';
+				  
+				}
+				else{
+					$prosrochka = " ";
+				}
 				echo "
 				<hr>
 				<div class=\"container\" style=\"background-color: #F8E0E0;\" >	
@@ -419,15 +439,15 @@ case 3;
 					<img src=\""./* Запрос картинки  */$result["img_item"]."\" width=\"150\" height=\"150\">
 				</div>
 				<div class=\"col-sm-6\" style=\"background-color: #F8E0E0;\" >
-					<br>Название - ".$result_titleBrend["title"]."
-					<br>Тип - ".$result_id_type_itemForZapros["name_type_item"]."
-					<br>Дата вручения - ".$result_id_itemForZapros['time']."
-					<br>Дата окончани - ".$result_id_itemForZapros['dead_Time']."
+					Название - ".$result_titleBrend["title"]."<br>
+					Тип - ".$result_id_type_itemForZapros["name_type_item"]."<br>
+					Дата вручения - ".$result_id_itemForZapros['time']."<br>
+					<div style = \"".$prosrochka."\">Дата окончани - ".$result_id_itemForZapros['dead_Time']."</div>
 				"; 
 				echo "	
-					<br>Местоположение - ".$result_id_positionForZapros['position_name'];	
+					Местоположение - ".$result_id_positionForZapros['position_name']."<br>";
 				echo "
-					</br>описание - ".$result["description_item"]."
+					описание - ".$result["description_item"]."<br>
 				";
 				echo "
 				</div>

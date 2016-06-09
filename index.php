@@ -92,12 +92,12 @@
 			</div>	
 		</div>	
 	</nav>
-	
+	<!--hidden-md hidden-lg -->
 	<div class="container">
 		<div class="row">
-		<div class="col-sm-6" ></br>
+		<div class="col-sm-6 "   ></br>
 		<div class='window_show green'>
-			<img src="img/1.jpg" height="300">
+			<div class="hidden-xs hidden-sm" ><img src="img/1.jpg" height="300"></div>
 		</div>	
 		</div>
 		<div class="col-sm-6" style="width: 300px; margin-top: 15%;">
