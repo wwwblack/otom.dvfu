@@ -11,7 +11,7 @@ switch ($functionValue){
 case 1:
 	funcionViewContentOnMainPage();
 break;
-
+//производим поиск вопросов
 case 6:
 	functionViewContentOnFAQPage();
 break;
@@ -24,6 +24,13 @@ case 8:
 	functionAddNewAnswerForQuestion();
 break;
 
-}
+case 10:
+        functionFindManual();
+break;
 
+case 11:
+	functionAddNewUrlManual();
+break;
+
+}
 ?>

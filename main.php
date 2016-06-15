@@ -41,10 +41,11 @@ include("/server/function.php");
 				var htmlSelectOfType_item = document.getElementById("htmlSelectOfType_item").value;
 				var htmlSelectOfBrend = document.getElementById("htmlSelectOfBrend").value;
 				var htmlSelectOfRoom = document.getElementById("htmlSelectOfRoom").value;
+                                var textSearch = document.getElementById("textSearch").value;
 				$.ajax ({
 					url: "server/functionAjax.php",
 					type: "POST",
-					data: ({functionValue: functionValue, htmlSelectOfType_item: htmlSelectOfType_item, htmlSelectOfBrend: htmlSelectOfBrend, htmlSelectOfRoom:htmlSelectOfRoom}),
+					data: ({functionValue: functionValue, htmlSelectOfType_item: htmlSelectOfType_item, htmlSelectOfBrend: htmlSelectOfBrend, htmlSelectOfRoom:htmlSelectOfRoom, textSearch: textSearch}),
 					dataType: "text",
 					beforeSend: funcBefore,
 					success: funcSuccess
@@ -187,7 +188,7 @@ include("/server/function.php");
 				</div>	
 				<div  class="col-sm-2" style=" margin-bottom: 3px;">
 					Введите слово<br>
-					<input name="tag" type="text" id="tag" placeholder="Поиск" size="20"/>
+					<input name="textSearch" type="text" id="textSearch" placeholder="Поиск" size="20"/>
 				</div>
 						
 				<div  class="col-sm-1" style=" margin-top: 10px;" >

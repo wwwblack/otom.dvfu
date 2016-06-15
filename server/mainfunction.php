@@ -11,6 +11,7 @@ function funcionViewContentOnMainPage() {
 	$htmlSelectOfBrend = $_POST['htmlSelectOfBrend'];
 	$htmlSelectOfRoom = $_POST['htmlSelectOfRoom'];
 	$htmlButtonValue= $_POST['htmlButtonValue'];
+        $textSearch = $_POST['textSearch'];
 	
 	$sqlZaprosForViewContent = "SELECT item.id, item.id_type_item, item.id_brend, item.id_position, item.Containerboard_number  ,item.description_item, item.img_item, item.given, brend.title as titleOfBrend, room.position_name as nameOfPosition, type_item.name_type_item as itemTypeName   FROM item 
 										JOIN brend ON (brend.id=item.id_brend)
@@ -30,6 +31,10 @@ function funcionViewContentOnMainPage() {
 											$sqlZaprosForViewContent .= " AND `item`.`id_position` = $htmlSelectOfRoom";
 											echo mysql_error();	
 										}
+                                                                             /*   if ($textSearch){
+											$sqlZaprosForViewContent .= "A LIKE $textSearch";
+											echo mysql_error();	
+										}*/
 	//Подсчёт строк
 	//----------------------------------------------------------
 	
@@ -102,8 +107,10 @@ function funcionViewContentOnMainPage() {
 								placement: 'right',
 								content: function() {  return $($(this).data('contentwrapper')).html(); }
 							  })
+							 
 							})
 						</script>
+						
 					";
 }
 //Функция отвечающая за вывод информации на страницу ФАКА. 
@@ -161,5 +168,46 @@ function functionAddNewQuestion(){
 		$id_user = $_SESSION['id'];
 		$sqlzapros2 = mysql_query("INSERT INTO `f_a_q_question` (`id_brend`, `id_user`, `question`, `executed`) VALUES ('$htmlSelectOfBrendForAddQuestion', '$id_user', '$f_a_q_question', '0')");
 		echo mysql_error();
+		
+}
+
+function functionAddNewUrlManual(){
+    $urlManual = $_POST['urlManual'];
+    $descriptionManual = $_POST['descriptionManual'];
+    $htmlSelectOfBrendForManual = $_POST['htmlSelectOfBrendForManual'];
+    $idUser = $_SESSION['id'];
+    $sqlzapros29 = mysql_query("INSERT INTO `manuals` (`id_brend`, `description`, `url`, `id_user`) VALUES ('$htmlSelectOfBrendForManual', '$descriptionManual', '$urlManual', '$idUser')");
+    echo mysql_error();
+}
+
+function functionFindManual(){
+    
+    $htmlSelectOfBrendForFindManual = $_POST['htmlSelectOfBrendForFindManual'];
+    $sqlzapros09 = "SELECT * FROM manuals";
+                                                    if ($htmlSelectOfBrendForFindManual){
+                      					$sqlzapros09 .= " WHERE `id_brend` = '$htmlSelectOfBrendForFindManual'";
+                                                        echo mysql_error();	
+                                                    }
+    $result_setsqlzapros09 = mysql_query($sqlzapros09);
+    while ($resultFindManuals = mysql_fetch_array($result_setsqlzapros09)){
+				echo "
+				<div class =\"".$resultFindManuals['id']."\">
+					<div class=\"row\" style=\" box-shadow: 0 0 5px; border-left: 1px solid black; border-right: 1px solid black;\" >
+                                            <div class=\"col-sm-2\">
+                                            </div>
+                                            <div class=\"col-sm-6\">
+                                            	<label for=\"recipient-name\" class=\"control-label\">Ссылка</label>
+						<br>
+                                                <a href=\"".$resultFindManuals['url']."\" rel=\"external\">".$resultFindManuals['url']."</a></br>
+                                                <label for=\"recipient-name\" class=\"control-label\">Дополнительное описание</label>    
+						<p>".$resultFindManuals['description']."</p>														
+                                            </div>
+                                            <div class=\"col-sm-4\">
+                                            </div>
+					</div>
+				</div>
+				<hr>
+				";
+    }
 }
 ?>

@@ -20,7 +20,17 @@ mysql_query("SET NAMES 'utf8';");
     <link rel="stylesheet" href="../css/pushy.css">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 	<script src="js/jquery.easydropdown.js" type="text/javascript"></script>
-		<script>		
+		<script type="text/javascript">
+                function externalLinks() {
+                links = document.getElementsByTagName("a");
+                for (i=0; i<links.length; i++) {
+                  link = links[i];
+                  if (link.getAttribute("href") && link.getAttribute("rel") == "external")
+                  link.target = "_blank";
+                }
+               }
+               window.onload = externalLinks;
+                    
 		function funcBefore(){
 			$("#content").html("<hr><img src=\"img/download.gif\" alt=\"Пример\" width=\"150\" height=\"150\">");
 		}
@@ -29,8 +39,10 @@ mysql_query("SET NAMES 'utf8';");
 			$("#content").html (data);
 		
 		}
-		
+                
+                //Функции не работают пока не загрузим их полностью
 		$(document).ready (function (){
+                        //функция выполняющая поиск вопросов в FAQ
 			$("#find").bind("click", function (){
 			var functionValue = document.getElementById("find").value;	
 			var htmlSelectOfBrend = document.getElementById("htmlSelectOfBrend").value;
@@ -44,7 +56,7 @@ mysql_query("SET NAMES 'utf8';");
 				});
 			});
 			//-------------------------------------------------------------
-			//Добавление вопроса 
+			//Добавление вопроса в FAQ
 			$("#enter").bind("click", function (){
 				var functionValue = document.getElementById("enter").value;
 				var htmlSelectOfBrendForAddQuestion = document.getElementById("htmlSelectOfBrendForAddQuestion").value;
@@ -52,13 +64,46 @@ mysql_query("SET NAMES 'utf8';");
 				$.ajax ({
 					url: "server/functionAjax.php",
 					type: "POST",
-					data: ({functionValue: functionValue, f_a_q_question: f_a_q_question,  htmlSelectOfBrendForAddQuestion:htmlSelectOfBrendForAddQuestion}),
+					data: ({functionValue: functionValue, f_a_q_question: f_a_q_question,
+                                                    htmlSelectOfBrendForAddQuestion:htmlSelectOfBrendForAddQuestion}),
 					dataType: "text",
 					beforeSend: funcBefore,
 					success: funcSuccess
 				});
 				document.getElementById('question').value='';
 				alert ("Ваш вопрос успешно добавлен");
+			});
+                        
+                        $("#enter").bind("click", function (){
+				var functionValue = document.getElementById("enter").value;
+				var htmlSelectOfBrendForAddQuestion = document.getElementById("htmlSelectOfBrendForAddQuestion").value;
+				var f_a_q_question = document.getElementById("question").value;
+				$.ajax ({
+					url: "server/functionAjax.php",
+					type: "POST",
+					data: ({functionValue: functionValue, f_a_q_question: f_a_q_question,
+                                                    htmlSelectOfBrendForAddQuestion:htmlSelectOfBrendForAddQuestion}),
+					dataType: "text",
+					beforeSend: funcBefore,
+					success: funcSuccess
+				});
+				document.getElementById('question').value='';
+				alert ("Ваш вопрос успешно добавлен");
+			});
+                        
+                        // функция отвечающая за добавление новых ссылок в раздел мануалы
+                        $("#findManuals").bind("click", function (){
+				var functionValue = document.getElementById("findManuals").value;
+                              
+                                var htmlSelectOfBrendForFindManual = document.getElementById("htmlSelectOfBrendForFindManual").value;
+                                $.ajax ({
+					url: "server/functionAjax.php",
+					type: "POST",
+					data: ({functionValue: functionValue, htmlSelectOfBrendForFindManual:htmlSelectOfBrendForFindManual}),
+					dataType: "text",
+					beforeSend: funcBefore,
+					success: funcSuccess
+				});
 			});
 			
 		});
@@ -151,7 +196,7 @@ mysql_query("SET NAMES 'utf8';");
 						<div id="collapseThree" class="panel-collapse collapse">
 							<div class="panel-body">
 								Производитель<br>
-								<select style="  width: 150px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
+								<select style="  width: 150px;"  id="htmlSelectOfBrendForFindManual" name="htmlSelectOfBrend" >
 										<option value="" class="label">Производитель</option>
 														<?php
 														//Не забуть это переделать в ajax
@@ -162,7 +207,48 @@ mysql_query("SET NAMES 'utf8';");
 															}
 														?>
 								</select>
-								<button class="btn btn-primary btn-md" id="find" value="10" type="submit">Поиск</button>
+								<button class="btn btn-primary btn-md" id="findManuals" value="10">Поиск</button>
+                                                                
+                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Добавить ссылку</button>
+                                                               <!-- Блок высплывающего сообщения для добавления ссылки на манул и описание к нему  -->
+                                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                                                                  <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                      <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                        <h4 class="modal-title" id="exampleModalLabel">Добавить URL для Манула</h4>
+                                                                      </div>
+                                                                      <div class="modal-body">
+                                                                        <form>
+                                                                          <div class="form-group">
+                                                                            <label for="recipient-name" class="control-label">Вставте ссылку:</label>
+                                                                            <input  type="text" class="form-control" id="urlManual">
+                                                                          </div>
+                                                                         <label for="recipient-name" class="control-label">Выберите производителя</label><br>                                                                          
+                                                                        <select style="  width: 150px;"  id="htmlSelectOfBrendForManual">
+										<option value="" class="label">Производитель</option>
+														<?php
+														//Не забуть это переделать в ajax
+														//через селект вытаскиваем тип по айди
+															$sqlZaprosBrend = mysql_query("SELECT * FROM brend ORDER BY title ");
+															while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
+																echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
+															}
+														?>
+                                                                        </select>    
+                                                                          <div class="form-group">
+                                                                            <label for="message-text" class="control-label">Пояснение:</label>
+                                                                            <textarea id="descriptionManual" class="form-control"></textarea>
+                                                                          </div>
+                                                                        </form>
+                                                                      </div>
+                                                                      <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
+                                                                        <button id="enterUrlManual" value="11" type="button" class="btn btn-primary">Добавить</button>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
 							</div>
 						</div>
 					</div>
@@ -192,7 +278,7 @@ mysql_query("SET NAMES 'utf8';");
 														?>
 								</select>
 								<p>Задать вопрос:</p>
-								<textarea id="question" name="question" style="width:90%; background-color:#FDF5E6; height:50px;  min-height:10px;resize:none;"></textarea>
+								<textarea id="question" class="form-control" name="question" style="width:90%; background-color:#FDF5E6; height:50px;  min-height:10px;resize:none;"></textarea>
 								<br>
 								<button id="enter" class="btn btn-primary btn-md"  style="" value="7" type="submit">Потвердить</button>
 							</div>
