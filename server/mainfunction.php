@@ -45,7 +45,7 @@ function funcionViewContentOnMainPage() {
 				$result = mysql_fetch_array($result_set);
 				//Проверяем на пустоту массива.
 				if (empty($result)) {
-					echo 'Извини друг, нечего не смог найти :(';
+					echo '';
 				}
 				else {
 					//через уайл загружаем имеющиеся объекты
@@ -56,7 +56,7 @@ function funcionViewContentOnMainPage() {
 						echo "
 						<div class =\"".$result['id']."\">
 							<div class=\"row\"  style=\"margin-top: 2px;\" >
-							<div class=\"col-sm-1\">
+							<div class=\"col-sm-1 hidden-xs hidden-sm\">
 							".$i."
 							</div>
 								<div class=\"col-sm-1\"  >
@@ -67,9 +67,11 @@ function funcionViewContentOnMainPage() {
 								</div>
 						";
 				
-						echo "	<div class=\"col-sm-2\" style=\"border-left: 1px solid black;\">
+						echo "	
+								<div class=\"col-sm-2\">
 									".$result['nameOfPosition']."
 								</div>
+								
 							";	
 						
 						echo "
@@ -83,9 +85,9 @@ function funcionViewContentOnMainPage() {
 						//В батон записываем айди item и логин пользователя и отправляем для дальнейшей обработки	
 						echo "	<form method=\"POST\">
 								<div class=\"col-sm-2\"style=\"border-left: 1px solid black;\">	
-									<input type=\"date\" style=\"\" name=\"days\" class=\"form-control\"/>
+									<input type=\"date\" id=\"dataname".$result["id"]."\" style=\"\" name=\"days\" class=\"form-control\"/>
 								</div>
-								<div class=\"col-sm-1\" style=\"border-left: 1px solid black; border-right: 1px solid black;\">
+								<div class=\"col-sm-1\" style=\"border-left: 1px solid black;\">
 									<div>
 									
 									<button name=\"addItem\" type=\"submit\" class=\"btn btn-md btn-primary\" value=\"".$result["id"].":".$_SESSION['id']."\" >Взять</button>
@@ -95,6 +97,7 @@ function funcionViewContentOnMainPage() {
 								<div class=\"col-sm-3\" style=\"border-left: 1px solid black; \"></div>
 						</div>
 						</div>
+						<div class=\"hidden-md hidden-lg\"><hr></div>
 						";
 					}
 				}	
@@ -117,42 +120,128 @@ function funcionViewContentOnMainPage() {
 function functionViewContentOnFAQPage(){
 	$i = 20;
 		$htmlSelectOfBrend = $_POST['htmlSelectOfBrend'];
-		$sqlzapros1 = mysql_query("SELECT * FROM f_a_q_question WHERE `id_brend` = '$htmlSelectOfBrend' ");
+		$sqlzapros1 = mysql_query("SELECT * FROM f_a_q_question");
 		echo mysql_error();
 			while ($resultFAQ = mysql_fetch_array($sqlzapros1)){
+				
+				//данная переменная для вложенного while
+				$idVopros = $resultFAQ['id'];
+				
 				$i++;
 				echo "
 				<div class =\"".$resultFAQ['id']."\">
-					<div class=\"row\" style=\" box-shadow: 0 0 5px; border-left: 1px solid black; border-right: 1px solid black;\" >
-						<div class=\"col-sm-12\">
-							".$resultFAQ['question']."	
-							<button class=\"btn btn-success btn-md\"  id=\"questionExecuted\"  style=\"margin-left:92%;\" value=\"4\" type=\"submit\">
-								Разрешён
-							</button>
-							<br>
-							Ответить
-							<br>
-							<textarea id=\"question\" name=\"question\" style=\"width:90%; background-color:#FDF5E6; margin-top:1%;height:50px; margin-left:2%; min-height:10px;resize:none;\"></textarea></br>
-							<button class=\"btn btn-primary btn-md\"  id=\"addAnswer\"  style=\"margin-left:83%;\" value=\"3\" type=\"submit\">
-								Потвердить
-							</button>
+					<div class=\"row\" style=\" box-shadow: 0 0 5px;\" >
+						<div class=\"row\">
+							<div class=\"col-sm-10\">
+								".$resultFAQ['question']."
+							</div>
 							
-									<div class=\"panel panel-default\" >
-										<div class=\"panel-heading\">
-											<h4 class=\"panel-title\">
-												<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#".$i."\">
-													Посмотреть ответы
-												</a>
-											</h4>
-										</div>
-										<div id=\"".$i."\" class=\"panel-collapse collapse\">
-											<div class=\"panel-body\">
+							
+							
+				";	
+					$a = $resultFAQ['id_user'];
+						$c = $resultFAQ['executed'];
+						$b = $_SESSION['id'];	
+					if ($c==1){
+							echo"<div class=\"col-sm-1\"></div><div class=\"col-sm-1\"><img src=\"img/sucsses.jpg\" height=\"30\"></div>";
+						}
+					elseif( $a==$b ){
+							echo " <script type=\"text/javascript\">
+									//Скрипт для добавления  ответа
+									$(\"#questionExecuted".$resultFAQ['id']."\").bind(\"click\", function (){
+										var questionExecuted = document.getElementById(\"questionExecuted".$resultFAQ['id']."\").value;
+										$.ajax ({
+											url: \"server/functionAjax.php\",
+											type: \"POST\",
+											data: ({questionExecuted: questionExecuted, functionAdmin: 13}),
+											dataType: \"text\",
+											beforeSend: funcBefore,
+											success: funcSuccess
+										});
+									});
+									</script>
+									<div class=\"col-sm-2\">
+									<button class=\"btn btn-success btn-sm\"  id=\"questionExecuted".$resultFAQ['id']."\" value=\"".$resultFAQ['id']."\" type=\"submit\">
+										Разрешён
+									</button>
+									</div>
+							";
+						
+					}
+			
+				echo "				
+							
+						</div>
+								<div class=\"panel panel-default\" >
+									<div class=\"panel-heading\">
+										<h4 class=\"panel-title\">
+											<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#".$i."\">
+												Посмотреть ответы
+											</a>
+										</h4>
+									</div>
+									<div id=\"".$i."\" class=\"panel-collapse collapse\">
+										<div class=\"panel-body\">
+					";					
+										$idUser_Array = Array();
+										$sql90 = mysql_query("SELECT f_a_q_answer.answer, users.name as nameOfUser
+															  FROM f_a_q_answer 
+															  JOIN users ON (users.id = f_a_q_answer.id_user) 
+															  WHERE id_question = $idVopros");
+										while ($result3 = mysql_fetch_array($sql90)) {
+											echo "
+												<div>".$result3["answer"]."</div><br>
+												<div>".$result3["nameOfUser"]."</div>
+											";	
+										}
+										/*foreach ($idVopros_Array as $vopros_iddd){
+											$idUser_Array[] = $result3["id_user"];
+										}
 											Для того чтобы решить эту проблему, попробуй нажать на кнопку старт. А так же проверь комутацию. куда идёт in и  out. 
 											<br>
 											<a>Егор</a>
-											</div>
-										</div>
-									</div>								
+										*/
+					echo "				</div>
+									</div>
+								</div>
+							<div class=\"row\"><div class=\"col-sm-6\">Напишите свой вариант решения проблемы</div></div>	
+							<div class=\"row\">
+								<script type=\"text/javascript\">
+									//Скрипт для добавления  ответа
+									$(\"#addAnswer".$resultFAQ['id']."\").bind(\"click\", function (){
+										var button_update_brend = document.getElementById(\"button_update_brend".$result["id"]."\").value;
+										var update_brend = document.getElementById(\"update".$result["id"]."\").value;
+										$.ajax ({
+											url: \"server/functionAdmin.php\",
+											type: \"POST\",
+											data: ({button_update_brend: button_update_brend, update_brend: update_brend, functionAdmin: 4}),
+											dataType: \"text\",
+											beforeSend: funcBefore,
+											success: funcSuccess
+										});
+									});
+									//Скрипт для кнопочка разрешён
+									$(\"#Answer".$resultFAQ['id']."\").bind(\"click\", function (){
+										var delete_posiotion_name = document.getElementById(\"delete_brend".$result["id"]."\").value;
+										$.ajax ({
+												url: \"server/functionAdmin.php\",
+												type: \"POST\",
+												data: ({delete_brend: delete_brend, functionAdmin: 2}),
+												dataType: \"text\",
+												beforeSend: funcBefore,
+												success: funcSuccess
+										});
+									});
+										
+								
+								</script>
+								<div class=\"col-sm-6\">
+								<textarea id=\"Answer".$resultFAQ['id']."\" name=\"Answer".$resultFAQ['id']."\" style=\"width:100%; background-color:#FDF5E6; margin-top:1%;height:50px; margin-left:2%; min-height:10px;resize:none;\"></textarea>
+								</div>
+								<div class=\"col-sm-6\"><br>
+									<button class=\"btn btn-primary btn-md\"  id=\"addAnswer".$resultFAQ['id']."\" value=\"3\" type=\"submit\">Подтвердить</button>
+								</div>
+							</div>	
 						</div>
 					</div>
 				</div>
@@ -164,7 +253,6 @@ function functionViewContentOnFAQPage(){
 function functionAddNewQuestion(){
 	$htmlSelectOfBrendForAddQuestion = $_POST['htmlSelectOfBrendForAddQuestion'];
 		$f_a_q_question = $_POST['f_a_q_question'];
-		//$f_a_q_question = mysql_real_escape_string($f_a_q_question);
 		$id_user = $_SESSION['id'];
 		$sqlzapros2 = mysql_query("INSERT INTO `f_a_q_question` (`id_brend`, `id_user`, `question`, `executed`) VALUES ('$htmlSelectOfBrendForAddQuestion', '$id_user', '$f_a_q_question', '0')");
 		echo mysql_error();
@@ -174,9 +262,13 @@ function functionAddNewQuestion(){
 function functionAddNewUrlManual(){
     $urlManual = $_POST['urlManual'];
     $descriptionManual = $_POST['descriptionManual'];
-    $htmlSelectOfBrendForManual = $_POST['htmlSelectOfBrendForManual'];
+    $htmlSelectOfBrendForManual = $_POST['htmlSelectOfBrendForAddManual'];
     $idUser = $_SESSION['id'];
     $sqlzapros29 = mysql_query("INSERT INTO `manuals` (`id_brend`, `description`, `url`, `id_user`) VALUES ('$htmlSelectOfBrendForManual', '$descriptionManual', '$urlManual', '$idUser')");
+	echo "<script type=\"text/javascript\">
+			alert(\"URL для мануала успешно добавлена\");
+		  </script>	
+	";
     echo mysql_error();
 }
 
@@ -210,4 +302,12 @@ function functionFindManual(){
 				";
     }
 }
+
+//Обновление 
+function functionQuestionExecuted(){
+	$sqlzapros1 = mysql_query("UPDATE `room` SET  `position_name` = '$update_position_name' WHERE `id` = '$id_position_name'");
+	echo mysql_error();
+	echo "Название аудитории обновлено";
+}
+
 ?>

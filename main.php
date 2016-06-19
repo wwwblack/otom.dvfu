@@ -61,7 +61,7 @@ include("/server/function.php");
 		
 		//Функции для динамических селектов
 		//--------------------------------------------------
-		function dinamicSelectHtmlSelectOfType_item(){
+		/*function dinamicSelectHtmlSelectOfType_item(){
 			var htmlSelectOfType_item = document.getElementById("htmlSelectOfType_item").value;
 			alert (htmlSelectOfType_item);
 		}
@@ -73,7 +73,7 @@ include("/server/function.php");
 				opts[opts.length-1] = null;
 			}
 		}
-
+*/
 		
 		//Плавное всплытие изображений-----------------------------------------------------------------------------------------------------------------------
 		
@@ -151,9 +151,13 @@ include("/server/function.php");
 										<?php
 										//Не забуть это переделать в ajax
 										//через селект вытаскиваем тип по айди
-											$sqlZaprosType_item = mysql_query("SELECT * FROM type_item ORDER BY name_type_item");
+											$sqlZaprosType_item = mysql_query("SELECT item.id_type_item, type_item.name_type_item
+																			   FROM item 
+																			   JOIN type_item ON (type_item.id=item.id_type_item)
+																			   GROUP BY  `name_type_item` 
+																			   ORDER BY  `name_type_item`");
 											while ($result_sqlZaprosType_item = mysql_fetch_array($sqlZaprosType_item)) {
-												echo "<option select value =".$result_sqlZaprosType_item["id"].">".$result_sqlZaprosType_item['name_type_item']."";	
+												echo "<option select value =".$result_sqlZaprosType_item["id_type_item"].">".$result_sqlZaprosType_item['name_type_item']."";	
 											}
 										?>
 					</select>
@@ -164,10 +168,14 @@ include("/server/function.php");
 						<option value="" class="label">Все</option>
 										<?php
 										//Не забуть это переделать в ajax
-										//через селект вытаскиваем тип по айди
-											$sqlZaprosBrend = mysql_query("SELECT * FROM brend ORDER BY title" );
+										//через селект вытаскиваем тип по айди SELECT * FROM `user` GROUP BY `index`
+											$sqlZaprosBrend = mysql_query("SELECT item.id_brend, brend.title 
+																		   FROM item 
+																		   JOIN brend ON ( brend.id = item.id_brend ) 
+																		   GROUP BY  `title` 
+																		   ORDER BY  `title` " );
 											while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
-												echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
+												echo "<option select value =".$result_sqlZaprosBrend ["id_brend"].">".$result_sqlZaprosBrend['title']."";	
 											}
 										?>
 					</select>
@@ -179,15 +187,18 @@ include("/server/function.php");
 											<?php
 											//Не забуть это переделать в ajax
 											//через селект вытаскиваем тип по айди
-												$sqlZaprosRoom = mysql_query("SELECT * FROM room");
+												$sqlZaprosRoom = mysql_query("SELECT item.id_position, room.position_name 
+																		   FROM item 
+																		   JOIN room ON ( room.id=item.id_position ) 
+																		   GROUP BY  `position_name` 
+																		   ORDER BY  `position_name` ");
 												while ($result_sqlZaprosRoom = mysql_fetch_array($sqlZaprosRoom)) {
-													echo "<option select value =".$result_sqlZaprosRoom["id"].">".$result_sqlZaprosRoom['position_name']."";	
+													echo "<option select value =".$result_sqlZaprosRoom["id_position"].">".$result_sqlZaprosRoom['position_name']."";	
 												}
 											?>
 					</select>
 				</div>	
-				<div  class="col-sm-2" style=" margin-bottom: 3px;">
-					Введите слово<br>
+				<div  class="col-sm-2" style=" margin-bottom: 3px;"><br>
 					<input name="textSearch" type="text" id="textSearch" placeholder="Поиск" size="20"/>
 				</div>
 						
@@ -220,19 +231,11 @@ include("/server/function.php");
 							</div>
 		</div>
 	</div>	
-<div class="container">			
-							<div id="content" >
+	<div class="container">			
+		<div id="content" >
 							
-							</div>
-						
-						
-					
-		
-						
+		</div>
 	</div>		
-							
-	
-	<nav class="navbar navbar-default  navbar-fixed-bottom" role="navigation">  </nav>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>	
 	<script src="../js/bootstrap.min.js"></script>

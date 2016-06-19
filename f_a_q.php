@@ -10,15 +10,15 @@ mysql_query("SET NAMES 'utf8';");
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="../js/bootstrap.min.js"></script>
-	<link href="../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../css/custom.css" rel="stylesheet">
-	<link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/demo.css">
-	<link rel="stylesheet" href="../css/easydropdown.metro.css" type="text/css"/>
+	<script src="js/bootstrap.min.js"></script>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/demo.css">
+	<link rel="stylesheet" href="css/easydropdown.metro.css" type="text/css"/>
     <!-- Pushy CSS -->
     <link rel="stylesheet" href="../css/pushy.css">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery.easydropdown.js" type="text/javascript"></script>
 		<script type="text/javascript">
                 function externalLinks() {
@@ -72,34 +72,30 @@ mysql_query("SET NAMES 'utf8';");
 				});
 				document.getElementById('question').value='';
 				alert ("Ваш вопрос успешно добавлен");
-			});
-                        
-                        $("#enter").bind("click", function (){
-				var functionValue = document.getElementById("enter").value;
-				var htmlSelectOfBrendForAddQuestion = document.getElementById("htmlSelectOfBrendForAddQuestion").value;
-				var f_a_q_question = document.getElementById("question").value;
-				$.ajax ({
+			});                        
+                // функция отвечающая за поиск в разделе мануалы
+            $("#findManuals").bind("click", function (){
+				var functionValue = document.getElementById("findManuals").value;
+                var htmlSelectOfBrendForFindManual = document.getElementById("htmlSelectOfBrendForFindManual").value;
+                $.ajax ({
 					url: "server/functionAjax.php",
 					type: "POST",
-					data: ({functionValue: functionValue, f_a_q_question: f_a_q_question,
-                                                    htmlSelectOfBrendForAddQuestion:htmlSelectOfBrendForAddQuestion}),
+					data: ({functionValue: functionValue, htmlSelectOfBrendForFindManual:htmlSelectOfBrendForFindManual}),
 					dataType: "text",
 					beforeSend: funcBefore,
 					success: funcSuccess
 				});
-				document.getElementById('question').value='';
-				alert ("Ваш вопрос успешно добавлен");
 			});
-                        
-                        // функция отвечающая за добавление новых ссылок в раздел мануалы
-                        $("#findManuals").bind("click", function (){
-				var functionValue = document.getElementById("findManuals").value;
-                              
-                                var htmlSelectOfBrendForFindManual = document.getElementById("htmlSelectOfBrendForFindManual").value;
-                                $.ajax ({
+			
+			 $("#enterUrlManual").bind("click", function (){
+				var urlManual = document.getElementById("urlManual").value;
+				var functionValue = document.getElementById("enterUrlManual").value;
+                var htmlSelectOfBrendForAddManual = document.getElementById("htmlSelectOfBrendForAddManual").value;
+				var descriptionManual = document.getElementById("descriptionManual").value;
+                $.ajax ({
 					url: "server/functionAjax.php",
 					type: "POST",
-					data: ({functionValue: functionValue, htmlSelectOfBrendForFindManual:htmlSelectOfBrendForFindManual}),
+					data: ({functionValue: functionValue, urlManual:urlManual, htmlSelectOfBrendForAddManual:htmlSelectOfBrendForAddManual, descriptionManual:descriptionManual }),
 					dataType: "text",
 					beforeSend: funcBefore,
 					success: funcSuccess
@@ -159,8 +155,10 @@ mysql_query("SET NAMES 'utf8';");
 						</div>
 						<div id="collapseOne" class="panel-collapse collapse">
 							<div class="panel-body">
-								Производитель &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;         Решённость<br>
-								<select style="  width: 150px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
+							<div class="row">
+							<div class="col-sm-4">
+								Производитель
+								<select style="  width: 60px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
 										<option value="" class="label">Все</option>
 														<?php
 														//Не забуть это переделать в ajax
@@ -171,13 +169,19 @@ mysql_query("SET NAMES 'utf8';");
 															}
 														?>
 								</select>
-								        
-								<select style="  width: 150px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
+							</div>
+							<div class="col-sm-4">
+								Выполнено        
+								<select style="  width: 60px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
 										<option value="" class="label">Все</option>
 										<option select value="0" >Ответ найден</option>
 										<option select value="1" >Ответ не найден</option>
 								</select>
-								<button class="btn btn-primary btn-md" id="find" value="6" type="submit">Поиск</button>
+							</div>
+							<div class="col-sm-4">	
+								<button class="btn btn-primary btn-sm" id="find" value="6" type="submit">Поиск</button>
+							</div>
+							</div>
 							</div>
 						</div>
 					</div>
@@ -199,12 +203,16 @@ mysql_query("SET NAMES 'utf8';");
 								<select style="  width: 150px;"  id="htmlSelectOfBrendForFindManual" name="htmlSelectOfBrend" >
 										<option value="" class="label">Производитель</option>
 														<?php
-														//Не забуть это переделать в ajax
-														//через селект вытаскиваем тип по айди
-															$sqlZaprosBrend = mysql_query("SELECT * FROM brend ORDER BY title ");
-															while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
-																echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
-															}
+														
+															//через селект вытаскиваем тип по айди SELECT * FROM `user` GROUP BY `index`
+																$sqlZaprosBrend = mysql_query("SELECT manuals.id_brend, brend.title 
+																							   FROM manuals
+																							   JOIN brend ON ( brend.id = manuals.id_brend ) 
+																							   GROUP BY  `title` 
+																							   ORDER BY  `title` " );
+																while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
+																	echo "<option select value =".$result_sqlZaprosBrend ["id_brend"].">".$result_sqlZaprosBrend['title']."";	
+																}
 														?>
 								</select>
 								<button class="btn btn-primary btn-md" id="findManuals" value="10">Поиск</button>
@@ -225,16 +233,16 @@ mysql_query("SET NAMES 'utf8';");
                                                                             <input  type="text" class="form-control" id="urlManual">
                                                                           </div>
                                                                          <label for="recipient-name" class="control-label">Выберите производителя</label><br>                                                                          
-                                                                        <select style="  width: 150px;"  id="htmlSelectOfBrendForManual">
-										<option value="" class="label">Производитель</option>
-														<?php
-														//Не забуть это переделать в ajax
-														//через селект вытаскиваем тип по айди
-															$sqlZaprosBrend = mysql_query("SELECT * FROM brend ORDER BY title ");
-															while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
-																echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
-															}
-														?>
+                                                                        <select style="  width: 150px;"  id="htmlSelectOfBrendForAddManual">
+																			<option value="" class="label">Производитель</option>
+																							<?php
+																							//Не забуть это переделать в ajax
+																							//через селект вытаскиваем тип по айди
+																								$sqlZaprosBrend = mysql_query("SELECT * FROM brend ORDER BY title ");
+																								while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
+																									echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
+																								}
+																							?>
                                                                         </select>    
                                                                           <div class="form-group">
                                                                             <label for="message-text" class="control-label">Пояснение:</label>
@@ -244,7 +252,7 @@ mysql_query("SET NAMES 'utf8';");
                                                                       </div>
                                                                       <div class="modal-footer">
                                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-                                                                        <button id="enterUrlManual" value="11" type="button" class="btn btn-primary">Добавить</button>
+                                                                        <button id="enterUrlManual" value="11" type="button" class="btn btn-primary" data-dismiss="modal">Добавить</button>
                                                                       </div>
                                                                     </div>
                                                                   </div>
@@ -288,13 +296,16 @@ mysql_query("SET NAMES 'utf8';");
 			</div>
 	
 		</div>
+		<hr>
+	<div class="container">	
 		<div class="row">
 			<div class="col-sm-12">
 				<div id="content">
 						
 				</div>
 			</div>
-		</div>	
+		</div>
+	</div>		
 	</div>
 	
 

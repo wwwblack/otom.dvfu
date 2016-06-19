@@ -74,6 +74,19 @@ if( isset( $_POST['del'] ) )
 					success: funcSuccess
 				});
 			});
+			//Скрипт для вывода таблицы производителей
+			$("#brend").bind("click", function (){
+				var userlist;
+				$.ajax ({
+					url: "server/functionAdminViewContent.php",
+					type: "POST",
+					
+					data: ({userlist: 3}),
+					dataType: "text",
+					beforeSend: funcBefore,
+					success: funcSuccess
+				});
+			});
 			//Скрипт для вывода таблицы feedback.
 			$("#feedback").bind("click", function (){
 				var userlist;
@@ -91,7 +104,7 @@ if( isset( $_POST['del'] ) )
 		
 		
 	</script>
-	<title>Профиль</title>
+	<title>Админ панель</title>
 	</head>
 	<body>
 	<nav class="navbar navbar-default navbar-fixed-top">
@@ -131,26 +144,26 @@ if( isset( $_POST['del'] ) )
 
 	<div class="container" >
 		<div class="row" >
-			<div class="col-sm-2">
-			<button id="userlist" type="submit">Список пользователей</button>
+			<div class="col-sm-2 ">
+			<button  id="userlist" type="submit">Список пользователей</button>
 			<br>
 			<br>
-			<button id="room" type="submit">Аудитории</button>
+			<button id="room" type="submit">Список аудиторий</button>
 			<br>
 			<br>
-			<button id="" type="submit">Поиск</button>
+			<button id="brend" type="submit">Производители</button>
 			<br>
 			<br>
-			<button id="enter" type="submit">Поиск</button>
+			<button id="" type="submit">Типы оборудования</button>
 			<br>
 			<br>
-			<button id="enter" type="submit">Поиск</button>
+			<button id="" type="submit">FAQ</button>
 			<br>
 			<br>
-			<button id="enter" type="submit">Поиск</button>
+			<button id="" type="submit">Manuals</button>
 			<br>
 			<br>
-			<button id="feedback" type="submit">Feedback</button>
+			<button id="feedback" type="submit">Просмотр отзывов</button>
 			</div>
 			<div class="col-sm-10">
 				<div id="content">

@@ -10,13 +10,13 @@ mysql_query("SET NAMES 'utf8';");
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="../js/bootstrap.min.js"></script>
-	<link href="../css/bootstrap.min.css" rel="stylesheet">
-	<link href="../css/custom.css" rel="stylesheet">
-	<link rel="stylesheet" href="../css/normalize.css">
-        <link rel="stylesheet" href="../css/demo.css">
+	<script src="js/bootstrap.min.js"></script>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/demo.css">
      
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="js/jquery.min.js"></script>
 	<!--
 	------------------------------------------------------------------------------------------------------------------------------------	
 	-->
@@ -83,11 +83,9 @@ mysql_query("SET NAMES 'utf8';");
 				$sql1 = mysql_query("SELECT * FROM users WHERE id = '$id_user'");
 				$user_data = mysql_fetch_array($sql1);
 			?>	
-			<form action="handler.php" method="post" id="my_form" enctype="multipart/form-data">
-                            <label for="avatar">Аватар:</label><br>
-			<img src="<?php echo $user_data['img'];?>" height="100">
-			
-				<button type=button class="btn btn-xs btn-success">Сменить фото</button>
+			<form action="handler.php" method="post" id="my_form" enctype="multipart/form-data">              
+			<img src="<?php echo $user_data['img'];?>" height="100"><br>
+			<button type=button class="btn btn-xs btn-success">Сменить фото</button>
 			</form>
 			</div>
 			<div class="col-sm-4">
@@ -114,17 +112,10 @@ mysql_query("SET NAMES 'utf8';");
 		</div>
 		<hr>
 	</div><!-- Это очень крутой бутстрапный спойлер!!!! Не забуть его добавить
-<div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#1">
+
                 Пункт Группы Свертывания #1
-              </a>
-            </h4>
-    </div>
-    <div id="1" class="panel-collapse collapse in">
-      <div class="panel-body">
+            
+    
         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
       </div>
     </div>
@@ -146,24 +137,32 @@ switch ($_SESSION['privilege']){
 		$total = $result_sqlZaprosForDirectorSpoilerStatistic[0];
 		echo "<div class=\"container\">	
 				<div class=\"row\"  >
-					<div class=\"panel\">
-						<div class=\"title\">".$result_sqlZaprosForDirector['name']." ".$result_sqlZaprosForDirector['last_Name']." | Задолженость = ".$total."</div>
-							<div class=\"inner\" style=\"display: none;\" >
+				<div class=\"panel-group\" id=\"accordion\">
+					<div class=\"panel panel-default\">
+						<div class=\"panel-heading\">
+							<h4 class=\"panel-title\">
+								<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#".$result_sqlZaprosForDirector['name']."\">
+									".$result_sqlZaprosForDirector['name']." ".$result_sqlZaprosForDirector['last_Name']." | Задолженость = ".$total."
+								</a>
+							</h4>
+						</div>	
+						<div id=\"".$result_sqlZaprosForDirector['name']."\" class=\"panel-collapse collapse\">
+							<div class=\"panel-body\">
 								<div class=\"row\" >	
 									<div class=\"col-sm-2\">		
-										<img src=\"".$result_sqlZaprosForDirector['img']."\" height=\"100\">
+										<img src=\"".$result_sqlZaprosForDirector['img']."\" height=\"50\">
 									</div>
 									<div class=\"col-sm-4\">
 										<div style=\" font-size: 250%; \">
-										<br>
 											".$result_sqlZaprosForDirector['name']." ".$result_sqlZaprosForDirector['last_Name']."
 										</div>
 									</div>	
-									<div class=\"col-sm-6\">
+									<div class=\"col-sm-3\">
 										Номер телефона
 										<br>
 										<input type=\"text\" name=\"phone\" size=\"30%\" autocomplete=\"off\" placeholder=\"".$result_sqlZaprosForDirector['phone']."\">
-										<hr>
+									</div>
+									<div class=\"col-sm-3\">
 										Електронный адрес<br>
 										<input type=\"text\" name=\"phone\" size=\"30%\" autocomplete=\"off\" placeholder=\"".$result_sqlZaprosForDirector['e-mail']."\">
 									</div>
@@ -214,15 +213,15 @@ switch ($_SESSION['privilege']){
 				}
 				echo "
 					<div class=\"row\">
-					<hr>
+					<hr color=\"black\">
 						<div class=\"col-sm-2\" >
 							<img src=\""./* Запрос картинки  */$result["img_item"]."\" width=\"100\" height=\"100\">
 						</div>
 						<div class=\"col-sm-3\">
-							<br>Производитель - ".$result_titleBrend["title"]."
-							<br>Тип - ".$result_id_type_itemForZapros["name_type_item"]."
-							<br>Исходное расположение - ".$result_id_positionForZapros['position_name']."
-							</br>описание - ".$result["description_item"]."
+							<br><label for=\"recipient-name\" class=\"control-label\">Производитель - </label>". $result_titleBrend["title"]."
+							<br><label for=\"recipient-name\" class=\"control-label\">Тип - </label>". $result_id_type_itemForZapros["name_type_item"]."
+							<br><label for=\"recipient-name\" class=\"control-label\">Исходное расположение - </label>". $result_id_positionForZapros['position_name']."
+							<br><label for=\"recipient-name\" class=\"control-label\">Описание - </label>". $result["description_item"]."
 						</div>	
 						<div class=\"col-sm-3\">
 							<br>Дата вручения - ".$result_id_itemForZapros['time']."
@@ -254,6 +253,7 @@ switch ($_SESSION['privilege']){
 		</div>
 		</div>
 		</div>
+		</div>
 		";	
 	}
 
@@ -267,29 +267,36 @@ case 2:
 		$sqlZaprosForDirectorSpoilerStatistic = mysql_query("SELECT count(*) FROM user_item WHERE id_user = $id_user_result_sqlZaprosForDirector");
 		$result_sqlZaprosForDirectorSpoilerStatistic = mysql_fetch_array($sqlZaprosForDirectorSpoilerStatistic);
 		$total = $result_sqlZaprosForDirectorSpoilerStatistic[0];
-		echo "<div class=\"container\">	
+				echo "<div class=\"container\">	
 				<div class=\"row\"  >
-					<div class=\"panel\">
-						<div class=\"title\">".$result_sqlZaprosForDirector['name']." ".$result_sqlZaprosForDirector['last_Name']." | Задолженость = ".$total."</div>
-							<div class=\"inner\"  style=\"display: none;\">
+				<div class=\"panel-group\" id=\"accordion\">
+					<div class=\"panel panel-default\">
+						<div class=\"panel-heading\">
+							<h4 class=\"panel-title\">
+								<a data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#".$result_sqlZaprosForDirector['name']."\">
+									".$result_sqlZaprosForDirector['name']." ".$result_sqlZaprosForDirector['last_Name']." | Задолженость = ".$total."
+								</a>
+							</h4>
+						</div>	
+						<div id=\"".$result_sqlZaprosForDirector['name']."\" class=\"panel-collapse collapse\">
+							<div class=\"panel-body\">
 								<div class=\"row\" >	
 									<div class=\"col-sm-2\">		
-										<img src=\"".$result_sqlZaprosForDirector['img']."\" height=\"100\">
+										<img src=\"".$result_sqlZaprosForDirector['img']."\" height=\"50\">
 									</div>
 									<div class=\"col-sm-4\">
 										<div style=\" font-size: 250%; \">
-										<br>
 											".$result_sqlZaprosForDirector['name']." ".$result_sqlZaprosForDirector['last_Name']."
 										</div>
 									</div>	
-									<div class=\"col-sm-6\">
-										Мобильный телефон
+									<div class=\"col-sm-3\">
+										Номер телефона
 										<br>
-										".$result_sqlZaprosForDirector['phone']."
-										<hr>
-										Електронный адрес
-										<br>
-										".$result_sqlZaprosForDirector['e-mail']."
+										<input type=\"text\" name=\"phone\" size=\"30%\" autocomplete=\"off\" placeholder=\"".$result_sqlZaprosForDirector['phone']."\">
+									</div>
+									<div class=\"col-sm-3\">
+										Електронный адрес<br>
+										<input type=\"text\" name=\"phone\" size=\"30%\" autocomplete=\"off\" placeholder=\"".$result_sqlZaprosForDirector['e-mail']."\">
 									</div>
 								</div>
 								
@@ -337,16 +344,16 @@ case 2:
 					$prosrochka = " ";
 				}
 				echo "
-					<div class=\"row\" >
-					<hr>
+					<div class=\"row\">
+					<hr color=\"black\">
 						<div class=\"col-sm-2\" >
 							<img src=\""./* Запрос картинки  */$result["img_item"]."\" width=\"100\" height=\"100\">
 						</div>
 						<div class=\"col-sm-3\">
-							<br>Производитель - ".$result_titleBrend["title"]."
-							<br>Тип - ".$result_id_type_itemForZapros["name_type_item"]."
-							<br>Исходное расположение - ".$result_id_positionForZapros['position_name']."
-							</br>описание - ".$result["description_item"]."
+							<br><label for=\"recipient-name\" class=\"control-label\">Производитель - </label>". $result_titleBrend["title"]."
+							<br><label for=\"recipient-name\" class=\"control-label\">Тип - </label>". $result_id_type_itemForZapros["name_type_item"]."
+							<br><label for=\"recipient-name\" class=\"control-label\">Исходное расположение - </label>". $result_id_positionForZapros['position_name']."
+							<br><label for=\"recipient-name\" class=\"control-label\">Описание - </label>". $result["description_item"]."
 						</div>	
 						<div class=\"col-sm-3\">
 							<br>Дата вручения - ".$result_id_itemForZapros['time']."
@@ -378,7 +385,8 @@ case 2:
 		</div>
 		</div>
 		</div>
-		";	
+		</div>
+		";
 	}
 
 break;
@@ -477,7 +485,7 @@ case 3;
 ?>		
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>	
-	<script src="../js/bootstrap.min.js"></script>
-	 <script src="../js/pushy.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	 <script src="js/pushy.min.js"></script>
 	</body>
 </html>

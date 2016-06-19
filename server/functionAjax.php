@@ -25,12 +25,19 @@ case 8:
 break;
 
 case 10:
-        functionFindManual();
+    functionFindManual();
 break;
 
 case 11:
 	functionAddNewUrlManual();
 break;
 
+case 12:
+	functionViewQuestionUser();
+break;
+
+case 13:
+	functionQuestionExecuted();
+break;
 }
 ?>
