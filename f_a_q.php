@@ -45,11 +45,12 @@ mysql_query("SET NAMES 'utf8';");
                         //функция выполняющая поиск вопросов в FAQ
 			$("#find").bind("click", function (){
 			var functionValue = document.getElementById("find").value;	
-			var htmlSelectOfBrend = document.getElementById("htmlSelectOfBrend").value;
+			var htmlSelectOfBrend = document.getElementById("htmlSelectOfBrendforAnswer").value;
+			var htmlSelectOfExecuted = document.getElementById("htmlSelectOfExecuted").value;
 			$.ajax ({
 					url: "server/functionAjax.php",
 					type: "POST",
-					data: ({functionValue: functionValue, htmlSelectOfBrend: htmlSelectOfBrend}),
+					data: ({functionValue: functionValue, htmlSelectOfBrend: htmlSelectOfBrend, htmlSelectOfExecuted: htmlSelectOfExecuted}),
 					dataType: "text",
 					beforeSend: funcBefore,
 					success: funcSuccess
@@ -149,7 +150,7 @@ mysql_query("SET NAMES 'utf8';");
 						<div class="panel-heading">
 						  <h4 class="panel-title">
 								  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-								   Поиск вопросов
+								   Ответы
 								  </a>
 								</h4>
 						</div>
@@ -158,24 +159,28 @@ mysql_query("SET NAMES 'utf8';");
 							<div class="row">
 							<div class="col-sm-4">
 								Производитель
-								<select style="  width: 60px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
+								<select style="  width: 60px;"  id="htmlSelectOfBrendforAnswer" name="htmlSelectOfBrend" >
 										<option value="" class="label">Все</option>
 														<?php
 														//Не забуть это переделать в ajax
 														//через селект вытаскиваем тип по айди
-															$sqlZaprosBrend = mysql_query("SELECT * FROM brend ORDER BY title ");
+															$sqlZaprosBrend = mysql_query("SELECT f_a_q_question.id_brend, brend.title 
+																							   FROM f_a_q_question
+																							   JOIN brend ON ( brend.id = f_a_q_question.id_brend ) 
+																							   GROUP BY  `title` 
+																							   ORDER BY  `title` ");
 															while ($result_sqlZaprosBrend = mysql_fetch_array($sqlZaprosBrend)) {
-																echo "<option select value =".$result_sqlZaprosBrend ["id"].">".$result_sqlZaprosBrend['title']."";	
+																echo "<option select value =".$result_sqlZaprosBrend["id_brend"].">".$result_sqlZaprosBrend['title']."";	
 															}
 														?>
 								</select>
 							</div>
 							<div class="col-sm-4">
 								Выполнено        
-								<select style="  width: 60px;"  id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
+								<select style="  width: 60px;"  id="htmlSelectOfExecuted" name="htmlSelectOfBrend" >
 										<option value="" class="label">Все</option>
-										<option select value="0" >Ответ найден</option>
-										<option select value="1" >Ответ не найден</option>
+										<option select value="1" >Ответ найден</option>
+										<option select value="0" >Ответ не найден</option>
 								</select>
 							</div>
 							<div class="col-sm-4">	
@@ -296,7 +301,7 @@ mysql_query("SET NAMES 'utf8';");
 			</div>
 	
 		</div>
-		<hr>
+	
 	<div class="container">	
 		<div class="row">
 			<div class="col-sm-12">
