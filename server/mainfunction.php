@@ -300,6 +300,7 @@ function functionFindManual(){
     $result_setsqlzapros09 = mysql_query($sqlzapros09);
     while ($resultFindManuals = mysql_fetch_array($result_setsqlzapros09)){
 				echo "
+				<hr>
 				<div class =\"".$resultFindManuals['id']."\">
 					<div class=\"row\" style=\" box-shadow: 0 0 5px; border-left: 1px solid black; border-right: 1px solid black;\" >
                                             <div class=\"col-sm-2\">

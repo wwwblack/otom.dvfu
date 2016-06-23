@@ -52,6 +52,7 @@ mysql_query("SET NAMES 'utf8';");
 				
 					<li ><a href="main.php">Каталог</a></li>
 					<li><a href="f_a_q.php">FAQ</a></li>
+					<li><a  href="manuals.php">Мануал</a></li>
 					<?php 
 					if ($_SESSION['privilege'] == 1 ){
 						echo "<li><a href=\"admin.php\">Админочка</a></li>";
@@ -225,7 +226,7 @@ switch ($_SESSION['privilege']){
 						</div>	
 						<div class=\"col-sm-3\">
 							<br>Дата вручения - ".$result_id_itemForZapros['time']."
-							<br><div style = \"".$prosrochka."\">Дата окончани - ".$result_id_itemForZapros['dead_Time']."</div>
+							<br><div style = \"".$prosrochka."\">Дата возврата - ".$result_id_itemForZapros['dead_Time']."</div>
 						</div>
 						<div class=\"col-sm-4\">
 							<form  method=\"POST\">";
@@ -357,7 +358,7 @@ case 2:
 						</div>	
 						<div class=\"col-sm-3\">
 							<br>Дата вручения - ".$result_id_itemForZapros['time']."
-							<br><div style = \"".$prosrochka."\">Дата окончани - ".$result_id_itemForZapros['dead_Time']."</div>
+							<br><div style = \"".$prosrochka."\">Дата возврата - ".$result_id_itemForZapros['dead_Time']."</div>
 						</div>
 						<div class=\"col-sm-4\">
 							<form  method=\"POST\">";
@@ -450,7 +451,7 @@ case 3;
 					Название - ".$result_titleBrend["title"]."<br>
 					Тип - ".$result_id_type_itemForZapros["name_type_item"]."<br>
 					Дата вручения - ".$result_id_itemForZapros['time']."<br>
-					<div style = \"".$prosrochka."\">Дата окончани - ".$result_id_itemForZapros['dead_Time']."</div>
+					<div style = \"".$prosrochka."\">Дата возврата - ".$result_id_itemForZapros['dead_Time']."</div>
 				"; 
 				echo "	
 					Местоположение - ".$result_id_positionForZapros['position_name']."<br>";

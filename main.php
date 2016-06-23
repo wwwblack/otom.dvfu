@@ -119,6 +119,7 @@ include("/server/function.php");
 				
 					<li class="active"><a href="#">Каталог</a></li>
 					<li><a href="f_a_q.php">FAQ</a></li>
+					<li><a  href="manuals.php">Мануал</a></li>
 					<?php 
 						if (isset($_SESSION['login'])){
 							echo  "	

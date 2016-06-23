@@ -124,6 +124,8 @@ if( isset( $_POST['del'] ) )
 				<ul class="nav navbar-nav navbar-right">
 				
 					<li ><a href="main.php">Каталог</a></li>
+					<li><a  href="f_a_q.php">F.A.Q.</a></li>
+					<li><a  href="manuals.php">Мануал</a></li>
 					<?php 
 					
 						if (isset($_SESSION['login'])){
