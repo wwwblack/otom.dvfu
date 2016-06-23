@@ -159,10 +159,13 @@ if( isset( $_POST['del'] ) )
 			<button id="" type="submit">Типы оборудования</button>
 			<br>
 			<br>
-			<button id="" type="submit">FAQ</button>
+			<button id="" type="submit">&nbsp;Оборудование&nbsp;</button>
 			<br>
 			<br>
-			<button id="" type="submit">Manuals</button>
+			<button  id="" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAQ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+			<br>
+			<br>
+			<button id="" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Manuals&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
 			<br>
 			<br>
 			<button id="feedback" type="submit">Просмотр отзывов</button>
