@@ -29,7 +29,6 @@
 	// Плавное всплытие картинки при загрузки
 	$(document).ready(function() {
 		setTimeout ("$('.window_show').show('drop');", 100);
-		//setTimeout ("$('.window_show').hide('drop');", 5000);
 	});
 	
 		function funcBefore(){

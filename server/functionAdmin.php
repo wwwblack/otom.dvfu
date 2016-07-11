@@ -21,7 +21,7 @@ switch ($functionAdmin){
 	break;
 	
 	case 2:
-	// удаление аудитории из спискf
+	// удаление аудитории из списка
 	$sqlzapros2 = mysql_query("DELETE FROM room WHERE `id` = '$delete_posiotion_name'");
 	echo "Аудитория удалена";
 	break;

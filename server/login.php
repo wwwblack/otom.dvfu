@@ -23,8 +23,6 @@ session_start();
 			$_SESSION['id'] = $user_data['id'];
 			header('Location: ../main.php');
 			exit;
-			echo "<a href=\"main.php\">ООО ГОСПОДЬ ВСЕМОГУЩИЙ. ОЙ ТОЧНО! ЭТО ЖЕ Я!</a>".$_SESSION['id'];
-			
 		}
 		else{
 			echo ("неверный пароль");
@@ -38,7 +36,6 @@ session_start();
 			$_SESSION['privilege'] = $user_data['privilege'];
 			header('Location: ../main.php');
 			exit;
-			
 		}
 		else{
 			echo ("неверный пароль");
@@ -52,13 +49,10 @@ session_start();
 			$_SESSION['privilege'] = $user_data['privilege'];
 			header('Location: ../main.php');
 			exit;
-			
 		}
 		else{
 			echo ("неверный пароль");
 		}
 	break;
-	
 	}
-
 ?>
