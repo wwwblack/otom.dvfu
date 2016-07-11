@@ -231,7 +231,7 @@ mysql_query("SET NAMES 'utf8';");
 	
 	<div class="container">	
 		<div class="row">
-			<div style="margin-top: 50px;"  class="col-sm-12">
+			<div  class="col-sm-12">
 				<div id="content">
 						
 				</div>
