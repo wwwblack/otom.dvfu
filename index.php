@@ -109,6 +109,7 @@
             <input id="passik" type="password" size="25" name="pass" id="pass" />
 			<hr>
 			<button id="enter" type="submit">Войти</button>
+			<button id="enter" type="submit">как гость</button>
 		</form>
 		<div id="information"></div>
 		<!--<a href="#" class="thumbnail">

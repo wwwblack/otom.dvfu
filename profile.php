@@ -54,7 +54,7 @@ mysql_query("SET NAMES 'utf8';");
 					<li><a href="f_a_q.php">FAQ</a></li>
 					<li><a  href="manuals.php">Мануал</a></li>
 					<?php 
-					if ($_SESSION['privilege'] == 1 ){
+					if ($_SESSION['id_role_of_user'] == 1 ){
 						echo "<li><a href=\"admin.php\">Админочка</a></li>";
 					}
 					else{
@@ -91,9 +91,16 @@ mysql_query("SET NAMES 'utf8';");
 			</div>
 			<div class="col-sm-4">
 				<div style="font-size: 250%;">
-						<?php echo $user_data['name'];
+						<?php echo $user_data['first_name'];
 								echo " ";
-							  echo $user_data['last_Name'];?>
+							  echo $user_data['last_name'];?>
+				</div>
+				<br>
+				<div style="font-size: 200%;">
+					<?php if ($_SESSION['id_role_of_user'] == 1 ){
+						echo " Права: Администратор";
+					};
+							?>
 				</div>
 			</div>	
 			

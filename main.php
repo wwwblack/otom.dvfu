@@ -119,7 +119,7 @@ include("/server/function.php");
 				
 					<li class="active"><a href="#">Каталог</a></li>
 					<li><a href="f_a_q.php">FAQ</a></li>
-					<li><a  href="manuals.php">Мануал</a></li>
+					<li><a  href="manuals.php">Методички</a></li>
 					<?php 
 						if (isset($_SESSION['login'])){
 							echo  "	
@@ -145,7 +145,7 @@ include("/server/function.php");
 		</div>	
 			<h1>Выберите критерии поиска</h1>
 				<div  class="col-sm-2">			
-					Тип оборудования<br>	
+					Объект<br>	
                     <select style="  width: 150px;" id="htmlSelectOfType_item" onchange="dinamicSelectHtmlSelectOfType_item();" name="htmlSelectOfType_item">
 						<option value="" class="label">Все</option>
 
@@ -164,7 +164,7 @@ include("/server/function.php");
 					</select>
 				</div>	
 				<div  class="col-sm-2" >	
-					Производитель<br>
+					Характеристика<br>
 					<select style="  width: 150px;" id="htmlSelectOfBrend" name="htmlSelectOfBrend" >
 						<option value="" class="label">Все</option>
 										<?php
@@ -182,7 +182,7 @@ include("/server/function.php");
 					</select>
 				</div>	
 				<div  class="col-sm-2" >	
-					Местоположение<br>
+					Пользователь добавивший данные<br>
 					<select style="  width: 150px;" id="htmlSelectOfRoom" name="htmlSelectOfRoom">
 						<option value=""  class="label">Все</option>
 											<?php
@@ -200,6 +200,7 @@ include("/server/function.php");
 					</select>
 				</div>	
 				<div  class="col-sm-2" style=" margin-bottom: 3px;"><br>
+					текстовый поиск<br>
 					<input name="textSearch" type="text" id="textSearch" placeholder="Поиск" size="20"/>
 				</div>
 						
